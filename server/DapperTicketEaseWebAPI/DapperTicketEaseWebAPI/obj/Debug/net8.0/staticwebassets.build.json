@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "3kHrD/Ek1LucmeYGDgXVQMFgSHuyx/22n6tK12chLDE=",
+  "Source": "DapperTicketEaseWebAPI",
+  "BasePath": "_content/DapperTicketEaseWebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

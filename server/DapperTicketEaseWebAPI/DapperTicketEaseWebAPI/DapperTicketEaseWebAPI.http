@@ -1,0 +1,6 @@
+@DapperTicketEaseWebAPI_HostAddress = http://localhost:5285
+
+GET {{DapperTicketEaseWebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

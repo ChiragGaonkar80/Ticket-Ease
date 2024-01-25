@@ -45,13 +45,12 @@ CREATE TABLE dbo.Employees (
 );
 
 
-ALTER TABLE Employees 
-ALTER COLUMN manager_id int NULL;
+
 
 CREATE TABLE dbo.Ticket(
 	ticket_id INT IDENTITY (1,1) NOT NULL,
-    title varchar(20) NOT NULL,
-	description varchar(100) not null,
+    title varchar(255) NOT NULL,
+	description varchar(255) not null,
 	emp_id int not null,
 	dept_id int not null,
 	admin_id int not null,
@@ -69,7 +68,7 @@ CREATE TABLE dbo.Ticket(
 
 CREATE TABLE dbo.TicketComments(
 	comment_id int IDENTITY (1,1) NOT NULL,
-	description varchar(100) not null,
+	description varchar(255) not null,
 	emp_id int not null,
 	created_on date,
 	updated_on date,
@@ -86,7 +85,6 @@ Insert into Department values('IT','Rohan'),('Admin','Ram'),('HR','Rohit'),('L&D
 
 Insert into BU values('Hi- tech', 1),('IBM', 0),('CMT', 1),('HLS', 0);
 
-delete from employees;
 
 
 

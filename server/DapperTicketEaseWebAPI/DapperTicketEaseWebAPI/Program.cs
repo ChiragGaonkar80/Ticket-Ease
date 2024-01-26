@@ -1,4 +1,6 @@
+using DapperTicketEaseWebAPI.Models.BURepo;
 using DapperTicketEaseWebAPI.Models.Data;
+using DapperTicketEaseWebAPI.Models.DepartmentRepository;
 using DapperTicketEaseWebAPI.Models.Repo;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +27,8 @@ builder.Services.AddControllers();
 //////////////////////////////////////////
 builder.Services.AddTransient<DapperDBContext>();
 builder.Services.AddTransient<IEmployeeRepo, EmployeeRepo>();
+builder.Services.AddTransient<IBURepo, BURepo>();
+builder.Services.AddTransient<IDepartmentRepo, DepartmentRepo>();
 //////////////////////////////////////////
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

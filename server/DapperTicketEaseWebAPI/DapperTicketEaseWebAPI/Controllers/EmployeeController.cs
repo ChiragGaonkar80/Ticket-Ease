@@ -32,10 +32,10 @@ namespace DapperTicketEaseWebAPI.Controllers
         }
 
         
-        [HttpGet("GetEmployeeByCredentials")]
-        public async Task<IActionResult> GetEmployeeByCredentials(string email, string password, bool isAdmin)
+        [HttpGet("Login")]
+        public async Task<IActionResult> Login(string email, string password, bool isAdmin)
         {
-            var _list = await this.repo.GetEmployeeByCredentials(email, password, isAdmin);
+            var _list = await this.repo.Login(email, password, isAdmin);
             if (_list != null)
             {
                 return Ok(_list);

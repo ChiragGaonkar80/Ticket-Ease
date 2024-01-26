@@ -4,7 +4,7 @@
     {
         public Task<List<Employee>> GetAllEmployees();
 
-        public Task<Employee> GetEmployeeByCredentials(string email, string password, bool isAdmin);
+        public Task<Employee> Login(string email, string password, bool isAdmin);
 
         public Task<string> CreateEmployee(Employee employee);
 

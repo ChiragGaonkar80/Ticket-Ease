@@ -50,6 +50,17 @@ namespace DapperTicketEaseWebAPI.Models.Repo
 
             }
         }
+        public async Task<List<TicketStatusCount>> GetTicketStatusCountsForAdmin(int emp_id)
+        {
+            using (var connection = context.CreateConnection())
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@emp_id", emp_id, DbType.Int32, ParameterDirection.Input);
+        
+                var result = await connection.QueryAsync<TicketStatusCount>("GetTicketStatusCountsForAdmin", parameters, commandType: CommandType.StoredProcedure);
+                return result.ToList();
+            }
+        }
 
         public async Task<Employee> Login(string email, string password, bool isAdmin)
         {

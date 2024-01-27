@@ -31,6 +31,20 @@ namespace DapperTicketEaseWebAPI.Controllers
 
         }
 
+        [HttpGet("GetTicketStatusCountsForAdmin")]
+        public async Task<IActionResult> GetTicketStatusCountsForAdmin(int emp_id)
+        {
+            var statusCounts = await this.repo.GetTicketStatusCountsForAdmin(emp_id);
+            if (statusCounts != null && statusCounts.Any())
+            {
+                return Ok(statusCounts);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
         
         [HttpGet("Login")]
         public async Task<IActionResult> Login(string email, string password, bool isAdmin)

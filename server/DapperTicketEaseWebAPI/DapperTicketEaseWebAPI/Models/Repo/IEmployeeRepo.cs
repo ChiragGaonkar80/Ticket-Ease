@@ -6,6 +6,8 @@
 
         public Task<Employee> GetEmployeeByCredentials(string email, string password, bool isAdmin);
 
+        public Task<List<TicketStatusCount>> GetTicketStatusCountsForAdmin(int emp_id);
+
         public Task<string> CreateEmployee(Employee employee);
 
         public Task<string> UpdateEmployee(Employee employee);

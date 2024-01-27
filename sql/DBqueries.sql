@@ -146,3 +146,15 @@ END;
 
 EXEC GetTicketStatusCountsForAdmin @emp_id = 2;
 EXEC GetTicketStatusCountsForAdmin @emp_id = 1;
+
+
+
+-- Ticket
+
+Insert into TicketStatus values('Open'),('Pending Approval'),('Resolved'),('Closed');
+
+
+Insert into Ticket Values('Network Issue','Cannot connect to internet',1,1,3,1,1,'2024-01-01','2024-01-05',0),
+						 ('Software error','Application crashing',2,2,4,2,2,'2024-01-05','2024-01-10',1),
+						 ('Website Downtime','Company website down',3,3,5,3,3,'2024-01-11','2024-01-15',0),
+						 ('Network Outage','Network outage affecting all departments',4,4,6,4,4,'2024-01-16','2024-01-20',1);

@@ -55,9 +55,9 @@ namespace DapperTicketEaseWebAPI.Models.Repo
             using (var connection = context.CreateConnection())
             {
                 var parameters = new DynamicParameters();
-                parameters.Add("@emp_id", emp_id, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("@emp_id", emp_id, System.Data.DbType.Int32, System.Data.ParameterDirection.Input);
         
-                var result = await connection.QueryAsync<TicketStatusCount>("GetTicketStatusCountsForAdmin", parameters, commandType: CommandType.StoredProcedure);
+                var result = await connection.QueryAsync<TicketStatusCount>("GetTicketStatusCountsForAdmin", parameters, commandType: System.Data.CommandType.StoredProcedure);
                 return result.ToList();
             }
         }

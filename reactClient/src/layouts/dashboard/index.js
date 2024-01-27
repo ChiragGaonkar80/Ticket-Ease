@@ -12,17 +12,175 @@ import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatist
 import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+
+import { useState } from "react";
+
 // Dashboard components
 
 function Dashboard() {
-  const { sales, tasks } = reportsLineChartData;
+  const [activeDept, setActiveDept] = useState(1);
+
+  const tasks = [
+    {
+      id: 1,
+      dept: "Admin and Security Staff",
+      icon: "weekend",
+      color: "dark",
+      count: 10,
+      features: [
+        {
+          id: 1,
+          feature: "Electrical",
+        },
+        {
+          id: 2,
+          feature: "Travel Request",
+        },
+        {
+          id: 3,
+          feature: "Pantry Service",
+        },
+        {
+          id: 4,
+          feature: "Raise Query",
+        },
+        {
+          id: 5,
+          feature: "Give Feedback",
+        },
+      ],
+    },
+
+    {
+      id: 2,
+      dept: "Human Resources and Payroll",
+      icon: "leaderboard",
+      color: "success",
+      count: 5,
+      features: [
+        {
+          id: 1,
+          feature: "Salary Related Queries",
+        },
+        {
+          id: 2,
+          feature: "Leaves and Absences",
+        },
+        {
+          id: 3,
+          feature: "Update Profile and Skills",
+        },
+        {
+          id: 4,
+          feature: "Raise Query",
+        },
+        {
+          id: 5,
+          feature: "Give Feedback",
+        },
+      ],
+    },
+
+    {
+      id: 3,
+      dept: "Information Technology",
+      icon: "store",
+      color: "primary",
+      count: 8,
+      features: [
+        {
+          id: 1,
+          feature: "Gen AI Tool",
+        },
+        {
+          id: 2,
+          feature: "Hardware Request",
+        },
+        {
+          id: 3,
+          feature: "Software Installation / Removal",
+        },
+        {
+          id: 4,
+          feature: "Raise Query",
+        },
+        {
+          id: 5,
+          feature: "Give Feedback",
+        },
+      ],
+    },
+
+    {
+      id: 4,
+      dept: "Learning and Development",
+      icon: "person_add",
+      color: "warning",
+      count: 15,
+      features: [
+        {
+          id: 1,
+          feature: "Training Request / Assistance",
+        },
+        {
+          id: 2,
+          feature: "Course Enrollment",
+        },
+        {
+          id: 3,
+          feature: "Certification Assistance",
+        },
+        {
+          id: 4,
+          feature: "Raise Query",
+        },
+        {
+          id: 5,
+          feature: "Give Feedback",
+        },
+      ],
+    },
+  ];
+
+  const bull = (
+    <Box component="span" sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}>
+      •
+    </Box>
+  );
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox py={3}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={3}>
+          {tasks.map((item, key) => {
+            console.log("item==>>", item);
+            return (
+              <Grid item xs={12} md={6} lg={3} key={item.id} onClick={() => setActiveDept(item.id)}>
+                <MDBox mb={1.5}>
+                  <ComplexStatisticsCard
+                    color={item.color}
+                    icon={item.icon}
+                    title={item.dept}
+                    // count={281}
+                    percentage={{
+                      color: "success",
+                      amount: item.count,
+                      label: "Total tickets raised",
+                    }}
+                  />
+                </MDBox>
+              </Grid>
+            );
+          })}
+
+          {/* <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="dark"
@@ -80,11 +238,40 @@ function Dashboard() {
                 }}
               />
             </MDBox>
-          </Grid>
+          </Grid> */}
         </Grid>
+
         <MDBox mt={4.5}>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={4}>
+            {tasks[activeDept - 1].features.map((item) => {
+              return (
+                <Grid item xs={12} md={6} lg={4} key={item.id}>
+                  <MDBox mb={3}>
+                    <Card sx={{ minWidth: 275 }}>
+                      <CardContent>
+                        {/* <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                          Word of the Day
+                        </Typography> */}
+                        <Typography variant="h5" component="div">
+                          {item.feature}
+                        </Typography>
+                        {/* <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                          adjective
+                        </Typography> */}
+                        <Typography variant="body2">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                        </Typography>
+                      </CardContent>
+                      <CardActions>
+                        <Button size="small">Raise Request</Button>
+                      </CardActions>
+                    </Card>
+                  </MDBox>
+                </Grid>
+              );
+            })}
+
+            {/* <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
                 <ReportsBarChart
                   color="info"
@@ -120,7 +307,7 @@ function Dashboard() {
                   chart={tasks}
                 />
               </MDBox>
-            </Grid>
+            </Grid> */}
           </Grid>
         </MDBox>
         {/* <MDBox>

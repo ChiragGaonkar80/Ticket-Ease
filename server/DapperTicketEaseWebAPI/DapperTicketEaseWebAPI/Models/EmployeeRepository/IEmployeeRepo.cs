@@ -4,7 +4,9 @@
     {
         public Task<List<Employee>> GetAllEmployees();
 
-        public Task<Employee> GetEmployeeByCredentials(string email, string password, bool isAdmin);
+        public Task<Employee> Login(string email, string password, bool isAdmin);
+
+        public Task<List<TicketStatusCount>> GetTicketStatusCountsForAdmin(int emp_id);
 
         public Task<List<TicketStatusCount>> GetTicketStatusCountsForAdmin(int emp_id);
 

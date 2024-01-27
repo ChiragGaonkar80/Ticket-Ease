@@ -50,8 +50,19 @@ namespace DapperTicketEaseWebAPI.Models.Repo
 
             }
         }
+        public async Task<List<TicketStatusCount>> GetTicketStatusCountsForAdmin(int emp_id)
+        {
+            using (var connection = context.CreateConnection())
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@emp_id", emp_id, DbType.Int32, ParameterDirection.Input);
+        
+                var result = await connection.QueryAsync<TicketStatusCount>("GetTicketStatusCountsForAdmin", parameters, commandType: CommandType.StoredProcedure);
+                return result.ToList();
+            }
+        }
 
-        public async Task<Employee> GetEmployeeByCredentials(string email, string password, bool isAdmin)
+        public async Task<Employee> Login(string email, string password, bool isAdmin)
         {
 
             string query = "Select * from employees where email=@email and password=@password and is_admin=@isAdmin";
@@ -72,16 +83,16 @@ namespace DapperTicketEaseWebAPI.Models.Repo
         public async Task<string> SeeEmployee(string email, string password, bool isAdmin)
         {
 
-            string query = "Select * from employees where email=@email and password=@password and is_admin=@isAdmin";
+            string query = "select * from employees e inner join bu b on e.bu_id = b.bu_id";
             var parameters = new DynamicParameters();
 
-            parameters.Add("email", email, System.Data.DbType.String);
-            parameters.Add("password", password, System.Data.DbType.String);
-            parameters.Add("isAdmin", isAdmin, System.Data.DbType.Boolean);
+            //parameters.Add("email", email, System.Data.DbType.String);
+            //parameters.Add("password", password, System.Data.DbType.String);
+            //parameters.Add("isAdmin", isAdmin, System.Data.DbType.Boolean);
 
             using (var connection = context.CreateConnection())
             {
-                var emplist = await connection.QueryFirstOrDefaultAsync<Employee>(query, parameters);
+                var emplist = await connection.QueryFirstOrDefaultAsync<dynamic>(query, parameters);
 
                 string jsonString = JsonSerializer.Serialize(emplist);
                 return jsonString;
@@ -96,7 +107,7 @@ namespace DapperTicketEaseWebAPI.Models.Repo
         public async Task<string> RemoveEmployee(string email)
         {
             string response = string.Empty;
-            string query = "Delete * from employees where email=@email";
+            string query = "Delete from employees where email=@email";
             var parameters = new DynamicParameters();
 
             parameters.Add("email", email, System.Data.DbType.String);
@@ -113,7 +124,7 @@ namespace DapperTicketEaseWebAPI.Models.Repo
         public async Task<string> UpdateEmployee(Employee employee)
         {
             string response = string.Empty;
-            string query = "Update employees set firstname=@firstname,lastname=@lastname,email=@email,password=@password,profile_link=@profile_link,dept_id=@dept_id,bu_id=@bu_id,manager_id=@manager_id,blood_type=@blood_type,is_admin=@is_admin,joined_on=@joined_on where ;";
+            string query = "Update employees set firstname=@firstname,lastname=@lastname,email=@email,password=@password,profile_link=@profile_link,dept_id=@dept_id,bu_id=@bu_id,manager_id=@manager_id,blood_type=@blood_type,is_admin=@is_admin,joined_on=@joined_on where email=@email;";
             var parameters = new DynamicParameters();
 
             parameters.Add("firstname", employee.firstname, System.Data.DbType.String);

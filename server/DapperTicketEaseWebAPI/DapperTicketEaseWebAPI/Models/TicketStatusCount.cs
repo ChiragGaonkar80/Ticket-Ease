@@ -1,4 +1,4 @@
-﻿namespace DapperTicketEaseWebAPI.Models
+namespace DapperTicketEaseWebAPI.Models
 {
     public class TicketStatusCount
     {

@@ -4,13 +4,7 @@ import MDBox from "components/MDBox";
 
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
-import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
-
-// Data
-import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
-import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 
 function Incidents() {
   const requests = [
@@ -18,31 +12,50 @@ function Incidents() {
       id: 12345,
       status: "Approved",
       employee: "Shreyas",
+      icon: "done",
+      color: "success",
     },
     {
       id: 12346,
       status: "In-Progress",
       employee: "Muskan",
+      icon: "pending",
+      color: "warning",
     },
     {
       id: 12347,
       status: "Open",
       employee: "Sujata",
+      icon: "add",
+      color: "secondary",
     },
     {
       id: 12345,
       status: "Approved",
       employee: "Shreyas",
+      icon: "done",
+      color: "success",
     },
     {
       id: 12346,
       status: "In-Progress",
       employee: "Muskan",
+      icon: "pending",
+      color: "warning",
     },
     {
       id: 12347,
       status: "Open",
       employee: "Sujata",
+      icon: "add",
+      color: "secondary",
+    },
+    {
+      id: 12348,
+      status: "Cancelled",
+      employee: "Sharvani",
+      icon: "close",
+      color: "primary",
     },
   ];
 
@@ -55,14 +68,14 @@ function Incidents() {
             <Grid item xs={12} md={6} lg={3} key={i}>
               <MDBox mb={1.5}>
                 <ComplexStatisticsCard
-                  color="dark"
-                  icon="weekend"
+                  color={req.color}
+                  icon={req.icon}
                   title={req.status}
-                  count={req.id}
+                  count={"SR-" + req.id}
                   percentage={{
                     color: "success",
                     // amount: "+55%",
-                    label: req.employee,
+                    label: "Assigned - " + req.employee,
                   }}
                 />
               </MDBox>

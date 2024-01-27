@@ -1,18 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-// react-router-dom components
-import { Link } from "react-router-dom";
-
-// @mui material components
 import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
-import Grid from "@mui/material/Grid";
-import MuiLink from "@mui/material/Link";
-
-// @mui icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import GoogleIcon from "@mui/icons-material/Google";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -24,39 +13,83 @@ import MDButton from "components/MDButton";
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 
 // Images
-import bgImage from "assets/images/bg-sign-in-basic.jpeg";
+import bgImage from "assets/images/bg-sign-in-basic.png";
+import axios from "axios";
 
 function Basic() {
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
+  useEffect(() => {
+    axios
+      .get(
+        "https://localhost:7093/api/Employee/GetEmployeeByCredentials?email=siya%40gmail.com&password=siya123&isAdmin=false"
+      )
+      .then((res) => {
+        console.log("res==>>", res.data);
+      });
+  }, []);
+
   return (
     <BasicLayout image={bgImage}>
       <Card>
         <MDBox
-          variant="gradient"
-          bgColor="info"
-          borderRadius="lg"
-          coloredShadow="info"
-          mx={2}
-          mt={-3}
-          p={2}
-          mb={1}
-          textAlign="center"
+          pt={4}
+          pb={3}
+          px={3}
+          xl={6}
+          style={{
+            height: "100vh",
+            alignItems: "center",
+            display: "flex",
+            justifyContent: "center",
+          }}
         >
-          <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-            Ticket Ease
-          </MDTypography>
-        </MDBox>
-        <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
+            <MDBox
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              pt={2}
+              px={2}
+              style={{ justifyContent: "center" }}
+            >
+              <MDTypography variant="h2" fontWeight="medium" textTransform="capitalize">
+                Hello There!
+              </MDTypography>
+            </MDBox>
+            <MDBox
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              pt={2}
+              px={2}
+              style={{ justifyContent: "center" }}
+            >
+              <MDTypography variant="h6" fontWeight="medium" textTransform="capitalize">
+                Welcome back, you almost forgot me
+              </MDTypography>
+            </MDBox>
+            <MDBox
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              pt={2}
+              px={2}
+              style={{ justifyContent: "center" }}
+            >
+              <MDTypography variant="h4" fontWeight="medium" textTransform="capitalize">
+                SIGN IN
+              </MDTypography>
+            </MDBox>
             <MDBox mb={2}>
               <MDInput type="email" label="Email" fullWidth />
             </MDBox>
             <MDBox mb={2}>
               <MDInput type="password" label="Password" fullWidth />
             </MDBox>
+
             <MDBox display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />
               <MDTypography
@@ -66,28 +99,18 @@ function Basic() {
                 onClick={handleSetRememberMe}
                 sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
               >
-                &nbsp;&nbsp;Is Admin
+                &nbsp;&nbsp;Login as Administrator
               </MDTypography>
             </MDBox>
             <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="info" fullWidth>
+              <MDButton
+                variant="gradient"
+                color="secondary"
+                fullWidth
+                onClick={() => (window.location.href = "/dashboard")}
+              >
                 sign in
               </MDButton>
-            </MDBox>
-            <MDBox mt={3} mb={1} textAlign="center">
-              <MDTypography variant="button" color="text">
-                Don&apos;t have an account?{" "}
-                <MDTypography
-                  component={Link}
-                  to="/authentication/sign-up"
-                  variant="button"
-                  color="info"
-                  fontWeight="medium"
-                  textGradient
-                >
-                  Sign up
-                </MDTypography>
-              </MDTypography>
             </MDBox>
           </MDBox>
         </MDBox>

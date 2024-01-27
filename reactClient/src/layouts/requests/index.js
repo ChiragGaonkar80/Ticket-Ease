@@ -18,31 +18,50 @@ function Requests() {
       id: 12345,
       status: "Approved",
       employee: "Amardeep",
+      icon: "done",
+      color: "success",
     },
     {
       id: 12346,
       status: "In-Progress",
       employee: "Chirag",
+      icon: "pending",
+      color: "warning",
     },
     {
       id: 12347,
       status: "Open",
       employee: "Lakshita",
+      icon: "add",
+      color: "secondary",
     },
     {
       id: 12345,
       status: "Approved",
       employee: "Amardeep",
+      icon: "done",
+      color: "success",
     },
     {
       id: 12346,
       status: "In-Progress",
       employee: "Chirag",
+      icon: "pending",
+      color: "warning",
     },
     {
       id: 12347,
       status: "Open",
       employee: "Lakshita",
+      icon: "add",
+      color: "secondary",
+    },
+    {
+      id: 12348,
+      status: "Cancelled",
+      employee: "Sharvani",
+      icon: "close",
+      color: "primary",
     },
   ];
 
@@ -55,14 +74,14 @@ function Requests() {
             <Grid item xs={12} md={6} lg={3} key={i}>
               <MDBox mb={1.5}>
                 <ComplexStatisticsCard
-                  color="success"
-                  icon="store"
+                  color={req.color}
+                  icon={req.icon}
                   title={req.status}
-                  count={req.id}
+                  count={"SR-" + req.id}
                   percentage={{
                     color: "success",
                     // amount: "+55%",
-                    label: req.employee,
+                    label: "Assigned - " + req.employee,
                   }}
                 />
               </MDBox>

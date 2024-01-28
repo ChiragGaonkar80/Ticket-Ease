@@ -81,12 +81,12 @@ function ProfileInfoCard({ title, description, info, social, action, shadow }) {
         </MDBox>
         <MDBox>
           {renderItems}
-          <MDBox display="flex" py={1} pr={2}>
+          {/* <MDBox display="flex" py={1} pr={2}>
             <MDTypography variant="button" fontWeight="bold" textTransform="capitalize">
               social: &nbsp;
             </MDTypography>
             {renderSocial}
-          </MDBox>
+          </MDBox> */}
         </MDBox>
       </MDBox>
     </Card>

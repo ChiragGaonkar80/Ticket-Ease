@@ -74,8 +74,8 @@ namespace DapperTicketEaseWebAPI.Models.Repo
 
             using (var connection = context.CreateConnection())
             {
-                var emplist = await connection.QueryFirstOrDefaultAsync<Employee>(query, parameters);
-                return emplist;
+                var emp = await connection.QueryFirstOrDefaultAsync<Employee>(query, parameters);
+                return emp;
             }
 
         }

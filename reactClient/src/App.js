@@ -40,7 +40,7 @@ import routes from "routes";
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
 
 // Images
-import brandWhite from "assets/images/logo-ct.png";
+import brandWhite from "assets/images/TE.png";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();

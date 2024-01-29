@@ -37,22 +37,27 @@ function Dashboard() {
         {
           id: 1,
           feature: "Electrical",
+          description: "Manage electrical equipment and issues.",
         },
         {
           id: 2,
           feature: "Travel Request",
+          description: "Request and manage travel arrangements.",
         },
         {
           id: 3,
           feature: "Pantry Service",
+          description: "Handle pantry and catering service requests.",
         },
         {
           id: 4,
           feature: "Raise Query",
+          description: "Submit and address general queries.",
         },
         {
           id: 5,
           feature: "Give Feedback",
+          description: "Provide feedback on services and experiences.",
         },
       ],
     },
@@ -67,22 +72,37 @@ function Dashboard() {
         {
           id: 1,
           feature: "Salary Related Queries",
+          description: "Address salary-related queries and concerns.",
         },
         {
           id: 2,
           feature: "Leaves and Absences",
+          description: "Manage leave requests and absences.",
         },
         {
           id: 3,
           feature: "Update Profile and Skills",
+          description: "Update employee profiles and skills.",
         },
         {
           id: 4,
-          feature: "Raise Query",
+          feature: "Mediclaim",
+          description: "Handle medical insurance-related matters.",
         },
         {
           id: 5,
+          feature: "Complaints",
+          description: "Report and address HR-related complaints.",
+        },
+        {
+          id: 6,
+          feature: "Raise Query",
+          description: "Submit and address general queries.",
+        },
+        {
+          id: 7,
           feature: "Give Feedback",
+          description: "Provide feedback on services and experiences.",
         },
       ],
     },
@@ -97,26 +117,30 @@ function Dashboard() {
         {
           id: 1,
           feature: "Gen AI Tool",
+          description: "Assistance with general IT tools.",
         },
         {
           id: 2,
           feature: "Hardware Request",
+          description: "Request and manage hardware resources.",
         },
         {
           id: 3,
           feature: "Software Installation / Removal",
+          description: "Install or remove software applications.",
         },
         {
           id: 4,
           feature: "Raise Query",
+          description: "Submit and address general queries.",
         },
         {
           id: 5,
           feature: "Give Feedback",
+          description: "Provide feedback on services and experiences.",
         },
       ],
     },
-
     {
       id: 4,
       dept: "Learning and Development",
@@ -127,22 +151,27 @@ function Dashboard() {
         {
           id: 1,
           feature: "Training Request / Assistance",
+          description: "Seek assistance for training-related matters.",
         },
         {
           id: 2,
           feature: "Course Enrollment",
+          description: "Enroll in various courses and programs.",
         },
         {
           id: 3,
           feature: "Certification Assistance",
+          description: "Get support for certification processes.",
         },
         {
           id: 4,
           feature: "Raise Query",
+          description: "Submit and address general queries.",
         },
         {
           id: 5,
           feature: "Give Feedback",
+          description: "Provide feedback on services and experiences.",
         },
       ],
     },
@@ -258,9 +287,7 @@ function Dashboard() {
                         {/* <Typography sx={{ mb: 1.5 }} color="text.secondary">
                           adjective
                         </Typography> */}
-                        <Typography variant="body2">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                        </Typography>
+                        <Typography variant="body2">{item.description}</Typography>
                       </CardContent>
                       <CardActions>
                         <Button size="small">Raise Request</Button>

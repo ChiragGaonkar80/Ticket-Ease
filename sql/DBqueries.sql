@@ -47,6 +47,18 @@ CREATE TABLE dbo.Employees (
 
 
 
+
+CREATE TABLE dbo.Request(
+	request_id int IDENTITY (1,1) NOT NULL,
+	request_type varchar(255) not null,
+	dept_id int not null,
+	created_on date,
+	updated_on date,
+	Constraint PK_Request PRIMARY KEY CLUSTERED (request_id),
+	Constraint fk_dept_request Foreign key (dept_id) references dbo.Department(dept_id)
+);
+
+
 CREATE TABLE dbo.Ticket(
 	ticket_id INT IDENTITY (1,1) NOT NULL,
     title varchar(255) NOT NULL,
@@ -56,6 +68,7 @@ CREATE TABLE dbo.Ticket(
 	admin_id int not null,
 	manager_id int not null,
 	status_id int not null,
+	request_id int not null,
 	created_on date,
 	updated_on date,
 	need_approval bit,
@@ -63,8 +76,11 @@ CREATE TABLE dbo.Ticket(
 	Constraint fk_user_ticket Foreign key (emp_id) references dbo.Employees(emp_id),
 	Constraint fk_Manager_ticket Foreign key (manager_id) references dbo.Employees(emp_id),
 	Constraint fk_status_ticket Foreign key (status_id) references dbo.TicketStatus(status_id),
-	Constraint fk_dept_ticket FOREIGN KEY (dept_id) REFERENCES dbo.Department(dept_id)
+	Constraint fk_dept_ticket FOREIGN KEY (dept_id) REFERENCES dbo.Department(dept_id),
+	Constraint fk_request_ticket FOREIGN KEY (request_id) REFERENCES dbo.Request(request_id)
 );
+
+
 
 CREATE TABLE dbo.TicketComments(
 	comment_id int IDENTITY (1,1) NOT NULL,
@@ -114,3 +130,61 @@ select * from Employees;
 
 
 DBCC CHECKIDENT ('Employees', RESEED, 0);
+
+
+-- SP for getting the status counts for admin of specific Department 
+CREATE PROCEDURE GetTicketStatusCountsForAdmin
+    @emp_id INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @dept_id INT;
+
+    -- Get the department of the Admin employee
+    SELECT @dept_id = dept_id
+    FROM dbo.Employees
+    WHERE emp_id = @emp_id;
+
+    -- Select the count of each status in the specified department for the Admin employee
+    SELECT
+        ts.status_title,
+        COUNT(t.ticket_id) AS ticket_count
+    FROM dbo.Ticket t
+    INNER JOIN dbo.TicketStatus ts ON t.status_id = ts.status_id
+    WHERE t.dept_id = @dept_id
+    GROUP BY ts.status_title;
+END;
+
+
+
+EXEC GetTicketStatusCountsForAdmin @emp_id = 2;
+EXEC GetTicketStatusCountsForAdmin @emp_id = 1;
+
+
+
+-- Ticket
+
+Insert into TicketStatus values('Open'),('Pending Approval'),('Resolved'),('Closed');
+
+
+Insert into Ticket Values('Network Issue','Cannot connect to internet',1,1,3,1,1,'2024-01-01','2024-01-05',0),
+						 ('Software error','Application crashing',2,2,4,2,2,'2024-01-05','2024-01-10',1),
+						 ('Website Downtime','Company website down',3,3,5,3,3,'2024-01-11','2024-01-15',0),
+						 ('Network Outage','Network outage affecting all departments',4,4,6,4,4,'2024-01-16','2024-01-20',1);
+
+
+insert into dbo.Department values('Admin','Rohan'),('HR','Raj'),('IT','Rahul'),('L&D','Reharsh');
+
+Insert into dbo.request values('Electrical',1,GETDATE(),GETDATE()),
+							  ('Travel Request',1,GETDATE(),GETDATE()),
+							  ('Pantry Service',1,GETDATE(),GETDATE()),
+							  ('Salary Related',2,GETDATE(),GETDATE()),
+							  ('Leaves & Absence',2,GETDATE(),GETDATE()),
+							  ('Update Profile and skills',2,GETDATE(),GETDATE()),
+							  ('Gen AI tools',3,GETDATE(),GETDATE()),
+							  ('Hardware Request',3,GETDATE(),GETDATE()),
+							  ('Software Installation & uninstallation',3,GETDATE(),GETDATE()),
+							  ('Training Request & assistance',4,GETDATE(),GETDATE()),
+							  ('Course Enrollment',4,GETDATE(),GETDATE()),
+							  ('Certification assistance',4,GETDATE(),GETDATE());

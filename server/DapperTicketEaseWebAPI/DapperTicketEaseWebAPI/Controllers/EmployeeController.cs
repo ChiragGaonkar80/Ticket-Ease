@@ -1,7 +1,13 @@
 ﻿using DapperTicketEaseWebAPI.Models;
 using DapperTicketEaseWebAPI.Models.Repo;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+//using System.Web.Http;
 
 namespace DapperTicketEaseWebAPI.Controllers
 {
@@ -9,13 +15,37 @@ namespace DapperTicketEaseWebAPI.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
+
+        private IConfiguration _configuration;
+
         private readonly IEmployeeRepo repo;
 
-        public EmployeeController(IEmployeeRepo repo)
+        public EmployeeController(IEmployeeRepo repo, IConfiguration configuration)
         {
             this.repo = repo;
+            _configuration = configuration;
         }
 
+        [AllowAnonymous]
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login(string email, string password, bool isAdmin)
+        {
+            var _emp = await this.repo.Login(email, password, isAdmin);
+            IActionResult response = Unauthorized();
+            if (_emp != null)
+            {
+                var token = GenerateToken(_emp);
+                response =  Ok(new { token = token, payload = _emp });
+                return response;
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
+        [Authorize]
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
@@ -60,19 +90,6 @@ namespace DapperTicketEaseWebAPI.Controllers
             }
 
         }
-        [HttpGet("GetTicketStatusCountsForAdmin")]
-        public async Task<IActionResult> GetTicketStatusCountsForAdmin(int emp_id)
-        {
-            var statusCounts = await this.repo.GetTicketStatusCountsForAdmin(emp_id);
-            if (statusCounts != null && statusCounts.Any())
-            {
-                return Ok(statusCounts);
-            }
-            else
-            {
-                return NotFound();
-            }
-        }
 
         [HttpGet("SeeEmployee")]
         public async Task<IActionResult> SeeEmployee(string email, string password, bool isAdmin)
@@ -115,5 +132,25 @@ namespace DapperTicketEaseWebAPI.Controllers
             return Ok(_result);
 
         }
+
+        private string GenerateToken(Employee employee)
+        {
+            var securitykey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWTSettings:Key"]));
+            var credentials = new SigningCredentials(securitykey, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["JWTSettings:Issuer"],
+                audience: _configuration["JWTSettings:Audience"],
+                expires: DateTime.Now.AddSeconds(30),
+                signingCredentials: credentials
+                
+                );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+
+        
+
     }
 }

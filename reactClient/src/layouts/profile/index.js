@@ -31,13 +31,13 @@ function Overview() {
             <Grid item xs={12} md={6} xl={6} sx={{ display: "flex" }}>
               <Divider orientation="vertical" sx={{ ml: -2, mr: 1 }} />
               <ProfileInfoCard
-                title="profile information"
-                description="Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality)."
+                title="Profile information"
+                description="Dedicated IT professional with a passion for problem-solving and innovation. Bringing a wealth of experience in system administration, software development, and troubleshooting. Committed to delivering efficient and reliable solutions in a dynamic and collaborative team environment."
                 info={{
-                  fullName: "Alec M. Thompson",
-                  mobile: "(44) 123 1234 123",
-                  email: "alecthompson@mail.com",
-                  location: "USA",
+                  fullName: "Ganesh Suhas Chodankar",
+                  mobile: "+91 9526892142",
+                  email: "ganesh_chodankar@persistent.com",
+                  location: "Pune, India",
                 }}
                 social={[]}
                 action={{ route: "", tooltip: "Edit Profile" }}
@@ -49,13 +49,12 @@ function Overview() {
             <Grid item xs={12} md={6} xl={6} sx={{ display: "flex" }}>
               <Divider orientation="vertical" sx={{ ml: -2, mr: 1 }} />
               <ProfileInfoCard
-                title="profile information"
-                description="Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality)."
+                title="Manager Information"
                 info={{
-                  fullName: "Alec M. Thompson",
-                  mobile: "(44) 123 1234 123",
-                  email: "alecthompson@mail.com",
-                  location: "USA",
+                  fullName: "Gautam Wagh",
+                  mobile: "+91 9822688271",
+                  email: "gautam_wagh@gmail.com",
+                  location: "Goa, India",
                 }}
                 social={[]}
                 action={{ route: "", tooltip: "Edit Profile" }}

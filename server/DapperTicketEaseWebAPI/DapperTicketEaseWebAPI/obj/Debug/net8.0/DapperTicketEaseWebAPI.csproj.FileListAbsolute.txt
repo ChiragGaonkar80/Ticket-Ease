@@ -145,3 +145,4 @@ C:\Users\shreyas_naik\OneDrive - Persistent Systems Limited\Desktop\TicketEase\T
 C:\Users\shreyas_naik\OneDrive - Persistent Systems Limited\Desktop\TicketEase\Ticket-Ease\server\DapperTicketEaseWebAPI\DapperTicketEaseWebAPI\obj\Debug\net8.0\DapperTicketEaseWebAPI.pdb
 C:\Users\shreyas_naik\OneDrive - Persistent Systems Limited\Desktop\TicketEase\Ticket-Ease\server\DapperTicketEaseWebAPI\DapperTicketEaseWebAPI\obj\Debug\net8.0\DapperTicketEaseWebAPI.genruntimeconfig.cache
 C:\Users\shreyas_naik\OneDrive - Persistent Systems Limited\Desktop\TicketEase\Ticket-Ease\server\DapperTicketEaseWebAPI\DapperTicketEaseWebAPI\obj\Debug\net8.0\ref\DapperTicketEaseWebAPI.dll
+C:\Users\shreyas_naik\OneDrive - Persistent Systems Limited\Desktop\TicketEase\Ticket-Ease\server\DapperTicketEaseWebAPI\DapperTicketEaseWebAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

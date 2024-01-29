@@ -59,7 +59,6 @@ const routes = [
     route: "/dashboard",
     component: <Dashboard />,
   },
-
   // {
   //   type: "collapse",
   //   name: "Billing",
@@ -103,15 +102,6 @@ const routes = [
     component: <Requests />,
   },
 
-  {
-    type: "collapse",
-    name: "Sign In",
-    key: "sign-in",
-    icon: <Icon fontSize="small">login</Icon>,
-    route: "/authentication/sign-in",
-    component: <SignIn />,
-  },
-
   // {
   //   type: "collapse",
   //   name: "Tables",
@@ -128,6 +118,15 @@ const routes = [
     icon: <Icon fontSize="small">person</Icon>,
     route: "/profile",
     component: <Profile />,
+  },
+
+  {
+    type: "collapse",
+    name: "Sign Out",
+    key: "sign-out",
+    icon: <Icon fontSize="small">login</Icon>,
+    route: "/authentication/sign-in",
+    component: <SignIn />,
   },
 
   // {

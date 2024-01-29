@@ -75,21 +75,7 @@ namespace DapperTicketEaseWebAPI.Controllers
             }
         }
 
-        
-        [HttpGet("Login")]
-        public async Task<IActionResult> Login(string email, string password, bool isAdmin)
-        {
-            var _list = await this.repo.Login(email, password, isAdmin);
-            if (_list != null)
-            {
-                return Ok(_list);
-            }
-            else
-            {
-                return NotFound();
-            }
 
-        }
 
         [HttpGet("SeeEmployee")]
         public async Task<IActionResult> SeeEmployee(string email, string password, bool isAdmin)

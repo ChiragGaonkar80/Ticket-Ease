@@ -1,5 +1,4 @@
-﻿using DapperTicketEaseWebAPI.Models.BURepo;
-using DapperTicketEaseWebAPI.Models;
+﻿using DapperTicketEaseWebAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DapperTicketEaseWebAPI.Models.TicketRepository;

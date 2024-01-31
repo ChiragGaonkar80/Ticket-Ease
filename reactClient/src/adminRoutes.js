@@ -1,12 +1,12 @@
 import Dashboard from "layouts/dashboard";
 
 import Profile from "layouts/profile";
-import SignIn from "layouts/authentication/sign-in";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
-import Incidents from "layouts/incidents";
-import Requests from "layouts/requests";
+import Incidents from "layouts/admin/Incidents";
+import Requests from "layouts/admin/Requests";
+import Analytics from "layouts/admin/Analytics/Analytics";
 
 const routes = [
   {
@@ -15,7 +15,7 @@ const routes = [
     key: "dashboard",
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/admin/dashboard",
-    component: <Dashboard />,
+    component: <Analytics />,
   },
 
   {
@@ -39,14 +39,6 @@ const routes = [
     type: "collapse",
     name: "Profile",
     key: "profile",
-    icon: <Icon fontSize="small">person</Icon>,
-    route: "/admin/profile",
-    component: <Profile />,
-  },
-  {
-    type: "collapse",
-    name: "Profile",
-    key: "profile2",
     icon: <Icon fontSize="small">person</Icon>,
     route: "/admin/profile",
     component: <Profile />,

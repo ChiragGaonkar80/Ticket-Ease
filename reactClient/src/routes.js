@@ -49,6 +49,7 @@ import SignUp from "layouts/authentication/sign-up";
 import Icon from "@mui/material/Icon";
 import Incidents from "layouts/incidents";
 import Requests from "layouts/requests";
+import Manager from "layouts/manager";
 
 const routes = [
   {
@@ -102,14 +103,14 @@ const routes = [
     component: <Requests />,
   },
 
-  // {
-  //   type: "collapse",
-  //   name: "Tables",
-  //   key: "tables",
-  //   icon: <Icon fontSize="small">table_view</Icon>,
-  //   route: "/tables",
-  //   component: <Tables />,
-  // },
+  {
+    type: "collapse",
+    name: "Tables",
+    key: "tables",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/tables",
+    component: <Tables />,
+  },
 
   {
     type: "collapse",
@@ -127,6 +128,15 @@ const routes = [
     icon: <Icon fontSize="small">login</Icon>,
     route: "/authentication/sign-in",
     component: <SignIn />,
+  },
+
+  {
+    type: "collapse",
+    name: "Manager",
+    key: "manager",
+    icon: <Icon fontSize="small">Manager</Icon>,
+    route: "/manager",
+    component: <Manager />,
   },
 
   // {

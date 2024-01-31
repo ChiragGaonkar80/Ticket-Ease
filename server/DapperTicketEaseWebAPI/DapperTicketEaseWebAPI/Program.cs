@@ -3,6 +3,8 @@ using DapperTicketEaseWebAPI.Models.Data;
 using DapperTicketEaseWebAPI.Models.DepartmentRepository;
 using DapperTicketEaseWebAPI.Models.Repo;
 using DapperTicketEaseWebAPI.Models.TicketRepository;
+using DapperTicketEaseWebAPI.Models.TicketCommentsRepository;
+using DapperTicketEaseWebAPI.Models.RequestRepository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -71,9 +73,10 @@ builder.Services.AddControllers();
 /////////////////////////////////////////////////////////////////////////////////////
 builder.Services.AddTransient<DapperDBContext>();
 builder.Services.AddTransient<IEmployeeRepo, EmployeeRepo>();
+builder.Services.AddTransient<IRequestRepo, RequestRepo>();
 builder.Services.AddTransient<IBURepo, BURepo>();
 builder.Services.AddTransient<IDepartmentRepo, DepartmentRepo>();
-builder.Services.AddTransient<ITicketRepo, TicketRepo>();
+builder.Services.AddTransient<ITicketCommentsRepo,TicketCommentsRepo>();
 ////////////////////////////////////////////////////////////////////////////////////
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

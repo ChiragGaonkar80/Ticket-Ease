@@ -21,15 +21,15 @@ function Basic() {
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
-  useEffect(() => {
-    axios
-      .get(
-        "https://localhost:7093/api/Employee/GetEmployeeByCredentials?email=siya%40gmail.com&password=siya123&isAdmin=false"
-      )
-      .then((res) => {
-        console.log("res==>>", res.data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       "https://localhost:7093/api/Employee/GetEmployeeByCredentials?email=siya%40gmail.com&password=siya123&isAdmin=false"
+  //     )
+  //     .then((res) => {
+  //       console.log("res==>>", res.data);
+  //     });
+  // }, []);
 
   return (
     <BasicLayout image={bgImage}>

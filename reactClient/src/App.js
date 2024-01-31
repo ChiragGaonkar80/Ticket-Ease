@@ -35,6 +35,7 @@ import theme from "assets/theme";
 import themeDark from "assets/theme-dark";
 // Material Dashboard 2 React routes
 import routes from "routes";
+import adminRoutes from "adminRoutes";
 
 // Material Dashboard 2 React contexts
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
@@ -47,6 +48,8 @@ export default function App() {
   const { miniSidenav, direction, layout, sidenavColor, darkMode } = controller;
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const { pathname } = useLocation();
+
+  const [admin, setAdmin] = useState(false);
 
   const handleOnMouseEnter = () => {
     if (miniSidenav && !onMouseEnter) {
@@ -65,6 +68,21 @@ export default function App() {
   useEffect(() => {
     document.body.setAttribute("dir", direction);
   }, [direction]);
+
+  // useEffect(async () => {
+  // const token = await window.sessionStorage("authtoken");
+  // console.log("token==>>", token);
+  // if (token !== null) setAdmin(true);
+  // }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      const token = await window.sessionStorage.getItem("authtoken");
+      console.log("token==>>", token);
+      if (token !== null) setAdmin(true);
+    }
+    fetchData();
+  }, []);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -86,22 +104,40 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {layout === "dashboard" && (
-        <>
-          <Sidenav
-            color={sidenavColor}
-            brand={brandWhite}
-            brandName="Ticket Ease"
-            routes={routes}
-            onMouseEnter={handleOnMouseEnter}
-            onMouseLeave={handleOnMouseLeave}
-          />
-        </>
+
+      {admin == false && (
+        <Sidenav
+          color={sidenavColor}
+          brand={brandWhite}
+          brandName="Ticket Ease"
+          routes={routes}
+          onMouseEnter={handleOnMouseEnter}
+          onMouseLeave={handleOnMouseLeave}
+        />
       )}
-      <Routes>
-        {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/dashboard" />} />
-      </Routes>
+      {admin == true && (
+        <Sidenav
+          color={sidenavColor}
+          brand={brandWhite}
+          brandName="Ticket Ease"
+          routes={adminRoutes}
+          onMouseEnter={handleOnMouseEnter}
+          onMouseLeave={handleOnMouseLeave}
+        />
+      )}
+      {admin == false && (
+        <Routes>
+          {getRoutes(routes)}
+          <Route path="*" element={<Navigate to="/dashboard" />} />
+        </Routes>
+      )}
+
+      {admin == true && (
+        <Routes>
+          {getRoutes(adminRoutes)}
+          <Route path="*" element={<Navigate to="/admin/dashboard" />} />
+        </Routes>
+      )}
     </ThemeProvider>
   );
 }

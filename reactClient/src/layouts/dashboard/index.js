@@ -21,6 +21,9 @@ import Typography from "@mui/material/Typography";
 
 import { useState } from "react";
 
+import Projects from "layouts/dashboard/components/Projects";
+import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
+
 // Dashboard components
 
 function Dashboard() {
@@ -337,16 +340,13 @@ function Dashboard() {
             </Grid> */}
           </Grid>
         </MDBox>
-        {/* <MDBox>
+        <MDBox>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={8}>
-              <Projects />
-            </Grid>
             <Grid item xs={12} md={6} lg={4}>
               <OrdersOverview />
             </Grid>
           </Grid>
-        </MDBox> */}
+        </MDBox>
       </MDBox>
       {/* <Footer />   */}
     </DashboardLayout>

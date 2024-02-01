@@ -9,8 +9,8 @@ import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 
 // Data
-import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
-import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
+import reportsLineChartData from "layouts/admin/Analytics/data/reportsLineChartData";
+import reportsBarChartData from "layouts/admin/Analytics/data/reportsBarChartData";
 
 // Dashboard components
 

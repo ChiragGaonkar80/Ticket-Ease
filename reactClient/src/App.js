@@ -36,8 +36,8 @@ export default function App() {
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const { pathname } = useLocation();
 
-  const [admin, setAdmin] = useState(false);
-  const [signed, isSigned] = useState(false);
+  const [admin, setAdmin] = useState(true);
+  const [signed, isSigned] = useState(true);
 
   const handleOnMouseEnter = () => {
     if (miniSidenav && !onMouseEnter) {
@@ -71,9 +71,9 @@ export default function App() {
     }
     fetchData();
 
-    Api.get("BU/GetAll").then((res) => {
-      console.log("res==>>", res);
-    });
+    // Api.get("BU/GetAll").then((res) => {
+    //   console.log("res==>>", res);
+    // });
   }, []);
 
   useEffect(() => {

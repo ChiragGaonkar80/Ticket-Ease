@@ -28,9 +28,17 @@ namespace DapperTicketEaseWebAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("Login")]
-        public async Task<IActionResult> Login(string email, string password, bool isAdmin)
+        public async Task<IActionResult> Login([FromBody] Login loginDetails)
         {
-            var _emp = await this.repo.Login(email, password, isAdmin);
+            /*
+             dummy data for log in
+            {
+                "email": "siya@gmail.com",
+              "password": "siya123",
+              "isAdmin": false
+            }
+            */
+            var _emp = await this.repo.Login(loginDetails.email, loginDetails.password, loginDetails.isAdmin);
             IActionResult response = Unauthorized();
             if (_emp != null)
             {

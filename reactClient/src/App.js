@@ -49,7 +49,7 @@ export default function App() {
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const { pathname } = useLocation();
 
-  const [admin, setAdmin] = useState(false);
+  const [admin, setAdmin] = useState(true);
 
   const handleOnMouseEnter = () => {
     if (miniSidenav && !onMouseEnter) {

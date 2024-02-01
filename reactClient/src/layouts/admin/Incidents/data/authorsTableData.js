@@ -38,6 +38,28 @@ export default function data() {
     </MDBox>
   );
 
+  const Manager = ({ image, name, email }) => (
+    <MDBox display="flex" alignItems="center" lineHeight={1}>
+      <MDBox ml={2} lineHeight={1}>
+        <MDTypography display="block" variant="button" fontWeight="medium">
+          {name}
+        </MDTypography>
+        <MDTypography variant="caption">{email}</MDTypography>
+      </MDBox>
+    </MDBox>
+  );
+
+  const CreatedDate = ({ date, time }) => (
+    <MDBox display="flex" alignItems="center" lineHeight={1}>
+      <MDBox ml={2} lineHeight={1}>
+        <MDTypography display="block" variant="button" fontWeight="medium">
+          {date}
+        </MDTypography>
+        <MDTypography variant="caption">{time}</MDTypography>
+      </MDBox>
+    </MDBox>
+  );
+
   const Job = ({ title, description }) => (
     <MDBox lineHeight={1} textAlign="left">
       <MDTypography display="block" variant="caption" color="text" fontWeight="medium">
@@ -49,27 +71,25 @@ export default function data() {
 
   return {
     columns: [
-      { Header: "author", accessor: "author", width: "45%", align: "left" },
-      { Header: "function", accessor: "function", align: "left" },
-      { Header: "status", accessor: "status", align: "center" },
-      { Header: "employed", accessor: "employed", align: "center" },
-      { Header: "action", accessor: "action", align: "center" },
+      { Header: "Ticket Id", accessor: "ticketId", align: "left" },
+      { Header: "Name", accessor: "name", align: "center" },
+      { Header: "Manager", accessor: "managerName", align: "center" },
+      { Header: "Status", accessor: "status", align: "center" },
+      { Header: "Date/Time", accessor: "dateAndTime", align: "center" },
+      { Header: "Action", accessor: "action", align: "center" },
     ],
 
     rows: [
       {
-        author: <Author image={team2} name="John Michael" email="john@creative-tim.com" />,
-        function: <Job title="Manager" description="Organization" />,
+        ticketId: <MDTypography>SR7892</MDTypography>,
+        name: <Author image={team3} name="Chirag Gaonkar" email="chirag@persistent.com" />,
+        managerName: <Manager image={team3} name="Gautam Wagh" email="gautam@persistent.com" />,
         status: (
           <MDBox ml={-1}>
-            <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
+            <MDBadge badgeContent="Pending" color="dark" variant="gradient" size="sm" />
           </MDBox>
         ),
-        employed: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            23/04/18
-          </MDTypography>
-        ),
+        dateAndTime: <CreatedDate date={"12/09/2023"} time={"09:00 AM"} />,
         action: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
             Edit
@@ -77,18 +97,15 @@ export default function data() {
         ),
       },
       {
-        author: <Author image={team3} name="Alexa Liras" email="alexa@creative-tim.com" />,
-        function: <Job title="Programator" description="Developer" />,
+        ticketId: <MDTypography>SR7842</MDTypography>,
+        name: <Author image={team3} name="Shreyas Naik" email="shreyas@persistent.com" />,
+        managerName: <Manager image={team3} name="Gautam Wagh" email="gautam@persistent.com" />,
         status: (
           <MDBox ml={-1}>
-            <MDBadge badgeContent="offline" color="dark" variant="gradient" size="sm" />
+            <MDBadge badgeContent="Approved" color="success" variant="gradient" size="sm" />
           </MDBox>
         ),
-        employed: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            11/01/19
-          </MDTypography>
-        ),
+        dateAndTime: <CreatedDate date={"12/09/2023"} time={"09:00 AM"} />,
         action: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
             Edit
@@ -96,18 +113,15 @@ export default function data() {
         ),
       },
       {
-        author: <Author image={team4} name="Laurent Perrier" email="laurent@creative-tim.com" />,
-        function: <Job title="Executive" description="Projects" />,
+        ticketId: <MDTypography>SR7892</MDTypography>,
+        name: <Author image={team3} name="Lakshita Werulkar" email="lakshita@persistent.com" />,
+        managerName: <Manager image={team3} name="Hemang Patel" email="hemu@persistent.com" />,
         status: (
           <MDBox ml={-1}>
-            <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
+            <MDBadge badgeContent="On Hold" color="warning" variant="gradient" size="sm" />
           </MDBox>
         ),
-        employed: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            19/09/17
-          </MDTypography>
-        ),
+        dateAndTime: <CreatedDate date={"14/09/2023"} time={"09:40 AM"} />,
         action: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
             Edit
@@ -115,18 +129,17 @@ export default function data() {
         ),
       },
       {
-        author: <Author image={team3} name="Michael Levi" email="michael@creative-tim.com" />,
-        function: <Job title="Programator" description="Developer" />,
+        ticketId: <MDTypography>SR7892</MDTypography>,
+        name: <Author image={team3} name="Ritwik Bare" email="ritwik@persistent.com" />,
+        managerName: (
+          <Manager image={team3} name="Sujata Chowdhary" email="sujata@persistent.com" />
+        ),
         status: (
           <MDBox ml={-1}>
-            <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
+            <MDBadge badgeContent="Pending" color="dark" variant="gradient" size="sm" />
           </MDBox>
         ),
-        employed: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            24/12/08
-          </MDTypography>
-        ),
+        dateAndTime: <CreatedDate date={"17/09/2023"} time={"09:37 AM"} />,
         action: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
             Edit
@@ -134,37 +147,17 @@ export default function data() {
         ),
       },
       {
-        author: <Author image={team3} name="Richard Gran" email="richard@creative-tim.com" />,
-        function: <Job title="Manager" description="Executive" />,
+        ticketId: <MDTypography>SR7892</MDTypography>,
+        name: (
+          <Author image={team3} name="Sharvani Parbhugaonkar" email="sharvani@persistent.com" />
+        ),
+        managerName: <Manager image={team3} name="Muskan Ladiya" email="muskan@persistent.com" />,
         status: (
           <MDBox ml={-1}>
-            <MDBadge badgeContent="offline" color="dark" variant="gradient" size="sm" />
+            <MDBadge badgeContent="Approved" color="success" variant="gradient" size="sm" />
           </MDBox>
         ),
-        employed: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            04/10/21
-          </MDTypography>
-        ),
-        action: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Edit
-          </MDTypography>
-        ),
-      },
-      {
-        author: <Author image={team4} name="Miriam Eric" email="miriam@creative-tim.com" />,
-        function: <Job title="Programator" description="Developer" />,
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge badgeContent="offline" color="dark" variant="gradient" size="sm" />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            14/09/20
-          </MDTypography>
-        ),
+        dateAndTime: <CreatedDate date={"12/09/2023"} time={"09:00 AM"} />,
         action: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
             Edit

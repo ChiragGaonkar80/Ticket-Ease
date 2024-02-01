@@ -4,6 +4,10 @@
     {
         public Task<List<Ticket>> GetAllTickets();
 
+        public Task<List<Ticket>> GetAllIncidentTickets();
+
+        public Task<List<Ticket>> GetAllRequestTickets();
+
         public Task<string> CreateTicket(Ticket ticket);
 
         public Task<string> UpdateTicket(Ticket ticket);

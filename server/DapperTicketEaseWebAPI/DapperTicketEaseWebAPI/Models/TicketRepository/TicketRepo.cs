@@ -51,6 +51,30 @@ namespace DapperTicketEaseWebAPI.Models.TicketRepository
             }
         }
 
+
+
+        public async Task<List<Ticket>> GetAllIncidentTickets()
+        {
+            string query = "Select * from ticket t inner join ticketstatus ts on t.status_id = ts.status_id;";
+            using (var connection = context.CreateConnection())
+            {
+                var ticketlist = await connection.QueryAsync<Ticket>(query);
+                return ticketlist.ToList();
+
+            }
+        }
+
+        public async Task<List<Ticket>> GetAllRequestTickets()
+        {
+            string query = "Select * from ticket t inner join ticketstatus ts on t.status_id = ts.status_id;";
+            using (var connection = context.CreateConnection())
+            {
+                var ticketlist = await connection.QueryAsync<Ticket>(query);
+                return ticketlist.ToList();
+
+            }
+        }
+
         public async Task<string> RemoveTicket(int id)
         {
             string response = string.Empty;

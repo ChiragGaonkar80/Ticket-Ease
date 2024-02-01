@@ -50,6 +50,18 @@ namespace DapperTicketEaseWebAPI.Models.Repo
 
             }
         }
+
+        public async Task<List<Employee>> GetAllManagers()
+        {
+            string query = "Select * from employees where is_manager=1";
+            using (var connection = context.CreateConnection())
+            {
+                var emplist = await connection.QueryAsync<Employee>(query);
+                return emplist.ToList();
+
+            }
+        }
+
         public async Task<List<TicketStatusCount>> GetTicketStatusCountsForAdmin(int emp_id)
         {
             using (var connection = context.CreateConnection())

@@ -61,6 +61,22 @@ namespace DapperTicketEaseWebAPI.Controllers
 
         }
 
+        [HttpGet("GetAllManagers")]
+        public async Task<IActionResult> GetAllManagers()
+        {
+            var _list = await this.repo.GetAllManagers();
+            if (_list != null)
+            {
+                return Ok(_list);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
+
         [HttpGet("GetTicketStatusCountsForAdmin")]
         public async Task<IActionResult> GetTicketStatusCountsForAdmin(int emp_id)
         {

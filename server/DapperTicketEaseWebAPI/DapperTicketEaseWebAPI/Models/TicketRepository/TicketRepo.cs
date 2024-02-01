@@ -107,5 +107,16 @@ namespace DapperTicketEaseWebAPI.Models.TicketRepository
 
             }
         }
+
+        public async Task<List<Ticket>> GetAllTicketsByCreationDate()
+        {
+            string query = "Select * from ticket t inner join ticketstatus ts on t.status_id = ts.status_id order by t.created_on;";
+            using (var connection = context.CreateConnection())
+            {
+                var ticketlist = await connection.QueryAsync<Ticket>(query);
+                return ticketlist.ToList();
+
+            }
+        }
     }
 }

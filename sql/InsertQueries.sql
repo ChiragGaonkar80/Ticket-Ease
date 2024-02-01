@@ -29,7 +29,7 @@ delete from Ticket;
 
 --Insertions added with priority value
 Insert into Ticket Values('Network Issue','Cannot connect to internet',1,1,1,2,1,9,'2024-01-01','2024-01-05',0,1),
-						 ('Software error','Application crashing',2,2,2,1,2,9,'2024-01-05','2024-01-10',1,2),
+						 ('Software error','Application crashing',2,2,2,1,2,9,'2024-01-06','2024-01-10',1,2),
 						 ('Website Downtime','Company website down',3,3,3,4,3,9,'2024-01-11','2024-01-15',0,3),
 						 ('Network Outage','Network outage affecting all departments',4,4,4,3,4,9,'2024-01-16','2024-01-20',1,1),
 						 ('Electrical','Electrical',4,1,4,5,1,1,'2024-01-16','2024-01-20',1,2),

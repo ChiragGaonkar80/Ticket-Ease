@@ -74,5 +74,20 @@ namespace DapperTicketEaseWebAPI.Controllers
             }
 
         }
+
+        [HttpGet("GetAllTicketsByCreationDate")]
+        public async Task<IActionResult> GetAllTicketsByCreationDate()
+        {
+            var _list = await this.repo.GetAllTicketsByCreationDate();
+            if (_list != null)
+            {
+                return Ok(_list);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
     }
 }

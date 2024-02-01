@@ -15,11 +15,36 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.png";
 import axios from "axios";
+import Api from "utils/Api";
 
 function Basic() {
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
+
+  const [email, setEmail] = useState("");
+
+  const [password, setPassword] = useState("");
+
+  const checkLogin = async () => {
+    console.log(email);
+    console.log(password);
+    console.log(rememberMe);
+
+    try {
+      const res = await Api.get("/Employee/Login", {
+        data: {
+          email: email,
+          password: password,
+          isAdmin: rememberMe,
+        },
+      });
+
+      console.log("res==>>", res);
+    } catch (err) {
+      console.log("err==>>", err);
+    }
+  };
 
   // useEffect(() => {
   //   axios
@@ -84,10 +109,20 @@ function Basic() {
               </MDTypography>
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" fullWidth />
+              <MDInput
+                type="email"
+                label="Email"
+                fullWidth
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" fullWidth />
+              <MDInput
+                type="password"
+                label="Password"
+                fullWidth
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </MDBox>
 
             <MDBox display="flex" alignItems="center" ml={-1}>
@@ -103,12 +138,7 @@ function Basic() {
               </MDTypography>
             </MDBox>
             <MDBox mt={4} mb={1}>
-              <MDButton
-                variant="gradient"
-                color="secondary"
-                fullWidth
-                onClick={() => (window.location.href = "/dashboard")}
-              >
+              <MDButton variant="gradient" color="secondary" fullWidth onClick={() => checkLogin()}>
                 sign in
               </MDButton>
             </MDBox>

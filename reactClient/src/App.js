@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState, useEffect, useMemo } from "react";
 
 // react-router components
@@ -42,6 +27,8 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 
 // Images
 import brandWhite from "assets/images/TE.png";
+import Api from "utils/Api";
+import Basic from "layouts/authentication/sign-in";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -49,7 +36,8 @@ export default function App() {
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const { pathname } = useLocation();
 
-  const [admin, setAdmin] = useState(true);
+  const [admin, setAdmin] = useState(false);
+  const [signed, isSigned] = useState(false);
 
   const handleOnMouseEnter = () => {
     if (miniSidenav && !onMouseEnter) {
@@ -82,6 +70,10 @@ export default function App() {
       if (token !== null) setAdmin(true);
     }
     fetchData();
+
+    Api.get("BU/GetAll").then((res) => {
+      console.log("res==>>", res);
+    });
   }, []);
 
   useEffect(() => {
@@ -104,8 +96,10 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-
-      {admin == false && (
+      <Routes>
+        <Route path="/authentication/sign-in" element={<Basic />} />
+      </Routes>
+      {signed && admin == false && (
         <Sidenav
           color={sidenavColor}
           brand={brandWhite}
@@ -115,7 +109,7 @@ export default function App() {
           onMouseLeave={handleOnMouseLeave}
         />
       )}
-      {admin == true && (
+      {signed && admin == true && (
         <Sidenav
           color={sidenavColor}
           brand={brandWhite}
@@ -125,14 +119,14 @@ export default function App() {
           onMouseLeave={handleOnMouseLeave}
         />
       )}
-      {admin == false && (
+      {signed && admin == false && (
         <Routes>
           {getRoutes(routes)}
           <Route path="*" element={<Navigate to="/dashboard" />} />
         </Routes>
       )}
 
-      {admin == true && (
+      {signed && admin == true && (
         <Routes>
           {getRoutes(adminRoutes)}
           <Route path="*" element={<Navigate to="/admin/dashboard" />} />

@@ -2465,24 +2465,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\lakshita_werulkar\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\sharvani_salgaonkar\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lakshita_werulkar\\Downloads\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\sharvani_salgaonkar\\Desktop\\TicketEase1\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI.csproj",
       "projectName": "DapperTicketEaseWebAPI",
-      "projectPath": "C:\\Users\\lakshita_werulkar\\Downloads\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI.csproj",
-      "packagesPath": "C:\\Users\\lakshita_werulkar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lakshita_werulkar\\Downloads\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\obj\\",
+      "projectPath": "C:\\Users\\sharvani_salgaonkar\\Desktop\\TicketEase1\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI.csproj",
+      "packagesPath": "C:\\Users\\sharvani_salgaonkar\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sharvani_salgaonkar\\Desktop\\TicketEase1\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\lakshita_werulkar\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\sharvani_salgaonkar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2490,7 +2485,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

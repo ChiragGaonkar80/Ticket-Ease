@@ -9,5 +9,9 @@
         public Task<string> UpdateTicket(Ticket ticket);
 
         public Task<string> RemoveTicket(int id);
+
+        public Task<List<Ticket>> GetAllTicketsByPriority();
+
+        public Task<List<Ticket>> GetAllTicketsByCreationDate();
     }
 }

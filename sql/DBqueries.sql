@@ -156,3 +156,6 @@ END;
 
 EXEC UpdateTicketStatusandAddComments @ticket_id = 2,@status_title='Closed',@comment='Now this is closed';
 
+-- Addition of priority column with values 1,2,3 -- 1 being the high priority
+Alter Table Ticket add priority int;
+

@@ -77,6 +77,7 @@ builder.Services.AddTransient<IRequestRepo, RequestRepo>();
 builder.Services.AddTransient<IBURepo, BURepo>();
 builder.Services.AddTransient<IDepartmentRepo, DepartmentRepo>();
 builder.Services.AddTransient<ITicketCommentsRepo,TicketCommentsRepo>();
+builder.Services.AddTransient<ITicketRepo, TicketRepo>();
 ////////////////////////////////////////////////////////////////////////////////////
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

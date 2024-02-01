@@ -29,14 +29,20 @@ namespace DapperTicketEaseWebAPI.Controllers
             }
         }
 
-        //[HttpPost("UpdateTicketStatusandAddComments")]
-        //public async Task<IActionResult> UpdateTicketStatusandAddComments([FromBody] Employee employee)
-        //{
-        //    var _result = await this.repo.UpdateTicketStatusandAddComments(employee);
+        [HttpPost("UpdateTicketStatusandAddComments")]
+        public async Task<IActionResult> UpdateTicketStatusandAddComments([FromBody] UpdateStatusAddComment us)
+        {
+            var _result = await this.repo.UpdateTicketStatusandAddComments(us);
+            if (_result == "pass")
+            {
+            return Ok(_result);
+            }
+            else
+            {
+                return BadRequest($"Error Updating Ticket Status{_result}");
+            }
 
-        //    return Ok(_result);
-
-        //}
+        }
 
     }
 }

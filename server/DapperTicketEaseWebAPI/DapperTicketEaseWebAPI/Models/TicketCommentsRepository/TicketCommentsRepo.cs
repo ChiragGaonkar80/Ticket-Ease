@@ -24,23 +24,28 @@ namespace DapperTicketEaseWebAPI.Models.TicketCommentsRepository
                 return result.ToList();
             }
         }
-        //public Task<string> UpdateTicketStatusandAddComments(UpdateStatusAddComment t)
-        //{
+        public async Task<string> UpdateTicketStatusandAddComments(UpdateStatusAddComment t)
+        {
 
-        //    string response = string.Empty;
-        //    var parameters = new DynamicParameters();
+            string response = string.Empty;
+            try
+            {
+                var parameters = new DynamicParameters();
 
-        //    parameters.Add("@ticket_id", t.ticket_id, System.Data.DbType.String);
-        //    parameters.Add("@status_title", t.status_title, System.Data.DbType.String);
-        //    parameters.Add("@comment", t.comment, System.Data.DbType.String);
+                parameters.Add("@ticket_id", t.ticket_id, System.Data.DbType.String);
+                parameters.Add("@status_title", t.status_title, System.Data.DbType.String);
+                parameters.Add("@comment", t.comment, System.Data.DbType.String);
 
-        //    using (var connection = context.CreateConnection())
-        //    {
-        //        await connection.ExecuteAsync("UpdateTicketStatusandAddComments", parameters,commandType:System.Data.CommandType.StoredProcedure);
-        //    }
-        //        response = "pass";
-
-        //    return response;
-        //}
+                using (var connection = context.CreateConnection())
+                {
+                    await connection.ExecuteAsync("UpdateTicketStatusandAddComments", parameters, commandType: System.Data.CommandType.StoredProcedure);
+                }
+                response = "pass";
+            } catch (Exception ex)
+            {
+                response = $"Error: {ex.Message}";
+            }
+            return response;
+        }
     }
 }

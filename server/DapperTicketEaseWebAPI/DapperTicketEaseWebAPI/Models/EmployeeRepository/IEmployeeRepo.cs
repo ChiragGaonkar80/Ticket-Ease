@@ -8,6 +8,8 @@
 
         public Task<List<TicketStatusCount>> GetTicketStatusCountsForAdmin(int emp_id);
 
+        public Task<List<TicketPriorityCount>> GetTicketPriorityCountsForAdmin(int emp_id);
+        
         public Task<string> CreateEmployee(Employee employee);
 
         public Task<string> UpdateEmployee(Employee employee);

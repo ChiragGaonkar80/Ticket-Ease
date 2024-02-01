@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DapperTicketEaseWebAPI.Models.TicketCommentsRepository;
+using DapperTicketEaseWebAPI.Models;
 
 
 namespace DapperTicketEaseWebAPI.Controllers
@@ -28,13 +29,14 @@ namespace DapperTicketEaseWebAPI.Controllers
             }
         }
 
-        /*[HttpPost("UpdateTicketComments")]
-        public async Task<IActionResult> UpdateTicket([FromBody] Ticket ticket)
-        {
-            var _result = await this.repo.UpdateTicket(ticket);
+        //[HttpPost("UpdateTicketStatusandAddComments")]
+        //public async Task<IActionResult> UpdateTicketStatusandAddComments([FromBody] Employee employee)
+        //{
+        //    var _result = await this.repo.UpdateTicketStatusandAddComments(employee);
 
-            return Ok(_result);
+        //    return Ok(_result);
 
-        }*/
+        //}
+
     }
 }

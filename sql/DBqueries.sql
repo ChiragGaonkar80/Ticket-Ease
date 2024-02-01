@@ -69,6 +69,7 @@ CREATE TABLE dbo.Ticket(
 	manager_id int not null,
 	status_id int not null,
 	request_type_id int not null,
+	priority int,
 	created_on date,
 	updated_on date,
 	need_approval bit,
@@ -85,6 +86,7 @@ CREATE TABLE dbo.TicketComments(
 	comment_id int IDENTITY (1,1) NOT NULL,
 	description varchar(255) not null,
 	ticket_id int not null,
+	status_title varchar(255) not null,
 	created_on date,
 	updated_on date,
 	Constraint PK_TicketComments PRIMARY KEY CLUSTERED (comment_id),
@@ -125,13 +127,26 @@ CREATE PROCEDURE GetTicketCommentsForTicket
     @ticket_id INT
 AS
 BEGIN
+	DECLARE @status_id INT;
+	DECLARE @status_title VARCHAR(255);
+
+	Select status_id=@status_id
+	From dbo.Ticket
+	where ticket_id=@ticket_id;
+
+
+	Select @status_title = status_title from TicketStatus
+	where status_id=@status_id;
+
     SELECT
-        t.ticket_id,t.description
+        t.ticket_id,t.description,@status_id as Status
     FROM dbo.TicketComments t
     WHERE t.ticket_id = @ticket_id;
 END;
 
+exec GetTicketCommentsForTicket @ticket_id=2;
 
+drop PROCEDURE UpdateTicketStatusandAddComments;
 -- SP for updating status and adding comments for particular Ticket
 CREATE PROCEDURE UpdateTicketStatusandAddComments
     @ticket_id INT,
@@ -150,9 +165,30 @@ BEGIN
 	UPDATE dbo.Ticket
 	SET status_id = @status_id
 	WHERE ticket_id = @ticket_id;
-	INSERT INTO dbo.TicketComments([description],[ticket_id],[created_on],[updated_on]) 
-	VALUES (@comment,@ticket_id,GETDATE(),GETDATE())
+	
+	INSERT INTO dbo.TicketComments([description],[ticket_id],[status_title],[created_on],[updated_on]) 
+	VALUES (@comment,@ticket_id,status_title,GETDATE(),GETDATE())
 END;
 
 EXEC UpdateTicketStatusandAddComments @ticket_id = 2,@status_title='Closed',@comment='Now this is closed';
 
+CREATE PROCEDURE GetTicketPriorityCountsForAdmin
+    @emp_id INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @dept_id INT;
+
+    -- Get the department of the Admin employee
+    SELECT @dept_id = dept_id
+    FROM dbo.Employees
+    WHERE emp_id = @emp_id;
+
+    -- Select the count of each priority in the specified department for the Admin employee
+    SELECT
+        t.priority,COUNT(t.ticket_id) AS ticket_count
+    FROM dbo.Ticket t
+    WHERE t.dept_id = @dept_id
+    GROUP BY t.priority;
+END;

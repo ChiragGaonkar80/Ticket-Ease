@@ -4,6 +4,6 @@
     {
         //public Task<string> UpdateTicket(Ticket ticket);
         public Task<List<TicketComments>> GetTicketCommentsForTicket(int ticket_id);
-
+        //public Task<string> UpdateTicketStatusandAddComments(UpdateStatusAddComment t);
     }
 }

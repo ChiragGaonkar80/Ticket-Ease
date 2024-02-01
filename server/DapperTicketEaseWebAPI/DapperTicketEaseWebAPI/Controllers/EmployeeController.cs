@@ -74,7 +74,20 @@ namespace DapperTicketEaseWebAPI.Controllers
                 return NotFound();
             }
         }
-
+        [HttpGet("GetTicketPriorityCountsForAdmin")]
+        public async Task<IActionResult> GetTicketPriorityCountsForAdmin(int emp_id)
+        {
+            var statusCounts = await this.repo.GetTicketPriorityCountsForAdmin(emp_id);
+            if (statusCounts != null && statusCounts.Any())
+            {
+                return Ok(statusCounts);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+        
 
 
         [HttpGet("SeeEmployee")]

@@ -61,6 +61,17 @@ namespace DapperTicketEaseWebAPI.Models.Repo
                 return result.ToList();
             }
         }
+        public async Task<List<TicketPriorityCount>> GetTicketPriorityCountsForAdmin(int emp_id)
+        {
+            using (var connection = context.CreateConnection())
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@emp_id", emp_id, System.Data.DbType.Int32, System.Data.ParameterDirection.Input);
+
+                var result = await connection.QueryAsync<TicketPriorityCount>("GetTicketPriorityCountsForAdmin", parameters, commandType: System.Data.CommandType.StoredProcedure);
+                return result.ToList();
+            }
+        }
 
         public async Task<Employee> Login(string email, string password, bool isAdmin)
         {

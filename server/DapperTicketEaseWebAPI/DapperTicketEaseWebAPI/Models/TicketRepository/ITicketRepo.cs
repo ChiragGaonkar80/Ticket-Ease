@@ -17,5 +17,7 @@
         public Task<List<Ticket>> GetAllTicketsByPriority();
 
         public Task<List<Ticket>> GetAllTicketsByCreationDate();
+
+        public Task<List<Ticket>> GetAllTicketsDeptWiseByPriority(int id, int priority);
     }
 }

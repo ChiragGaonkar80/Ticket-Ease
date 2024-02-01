@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DapperTicketEaseWebAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ecc31cd40771577b08a5e33c69cb4648b46aeb4f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90f0ba669de710c1d582ca01fb6b4df8980d48cf")]
 [assembly: System.Reflection.AssemblyProductAttribute("DapperTicketEaseWebAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DapperTicketEaseWebAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

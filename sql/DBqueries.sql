@@ -72,6 +72,7 @@ CREATE TABLE dbo.Ticket(
 	created_on date,
 	updated_on date,
 	need_approval bit,
+	priority int,
 	Constraint PK_Ticket PRIMARY KEY CLUSTERED (ticket_id),
 	Constraint fk_user_ticket Foreign key (emp_id) references dbo.Employees(emp_id),
 	Constraint fk_Manager_ticket Foreign key (manager_id) references dbo.Employees(emp_id),

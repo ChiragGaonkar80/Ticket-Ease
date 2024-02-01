@@ -142,5 +142,19 @@ namespace DapperTicketEaseWebAPI.Models.TicketRepository
 
             }
         }
+
+        public async Task<List<Ticket>> GetAllTicketsDeptWiseByPriority(int id, int priority)
+        {
+            string query = "Select * from ticket t inner join ticketstatus ts on t.status_id = ts.status_id where dept_id=@dept_id and priority=@priority;";
+            var parameters = new DynamicParameters();
+
+            parameters.Add("dept_id", id, System.Data.DbType.Int64);
+            parameters.Add("priority", priority, System.Data.DbType.Int64);
+            using (var connection = context.CreateConnection())
+            {
+                var ticketlist = await connection.QueryAsync<Ticket>(query, parameters);
+                return ticketlist.ToList();
+            }
+        }
     }
 }

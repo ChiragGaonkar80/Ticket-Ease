@@ -120,5 +120,20 @@ namespace DapperTicketEaseWebAPI.Controllers
             }
 
         }
+
+        [HttpGet("GetAllTicketsDeptWiseByPriority")]
+        public async Task<IActionResult> GetAllTicketsDeptWiseByPriority(int dept_id, int priority)
+        {
+            var _list = await this.repo.GetAllTicketsDeptWiseByPriority(dept_id, priority);
+            if (_list != null)
+            {
+                return Ok(_list);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
     }
 }

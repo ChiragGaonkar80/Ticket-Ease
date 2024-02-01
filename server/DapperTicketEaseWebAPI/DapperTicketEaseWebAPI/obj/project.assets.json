@@ -2465,24 +2465,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sujata_chowdhary\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\shreyas_naik\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sujata_chowdhary\\Desktop\\Demo\\temp\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\shreyas_naik\\OneDrive - Persistent Systems Limited\\Desktop\\TicketEase\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI.csproj",
       "projectName": "DapperTicketEaseWebAPI",
-      "projectPath": "C:\\Users\\sujata_chowdhary\\Desktop\\Demo\\temp\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI.csproj",
-      "packagesPath": "C:\\Users\\sujata_chowdhary\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sujata_chowdhary\\Desktop\\Demo\\temp\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\obj\\",
+      "projectPath": "C:\\Users\\shreyas_naik\\OneDrive - Persistent Systems Limited\\Desktop\\TicketEase\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI.csproj",
+      "packagesPath": "C:\\Users\\shreyas_naik\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\shreyas_naik\\OneDrive - Persistent Systems Limited\\Desktop\\TicketEase\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\sujata_chowdhary\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\shreyas_naik\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

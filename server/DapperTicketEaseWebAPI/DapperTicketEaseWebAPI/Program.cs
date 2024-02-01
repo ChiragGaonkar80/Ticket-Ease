@@ -73,7 +73,7 @@ builder.Services.AddControllers();
 /////////////////////////////////////////////////////////////////////////////////////
 builder.Services.AddTransient<DapperDBContext>();
 builder.Services.AddTransient<IEmployeeRepo, EmployeeRepo>();
-builder.Services.AddTransient<IRequestRepo, RequestRepo>();
+builder.Services.AddTransient<IRequestTypeRepo, RequestTypeRepo>();
 builder.Services.AddTransient<IBURepo, BURepo>();
 builder.Services.AddTransient<IDepartmentRepo, DepartmentRepo>();
 builder.Services.AddTransient<ITicketCommentsRepo,TicketCommentsRepo>();

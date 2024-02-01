@@ -8,11 +8,11 @@ namespace DapperRequestEaseWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RequestController : ControllerBase
+    public class RequestTypeController : ControllerBase
     {
-        private readonly IRequestRepo _repo;
+        private readonly IRequestTypeRepo _repo;
 
-        public RequestController(IRequestRepo _repo)
+        public RequestTypeController(IRequestTypeRepo _repo)
         {
             this._repo = _repo;
         }
@@ -21,7 +21,7 @@ namespace DapperRequestEaseWebAPI.Controllers
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
-            var _list = await this._repo.GetAllRequests();
+            var _list = await this._repo.GetAllRequestTypes();
             if (_list != null)
             {
                 return Ok(_list);
@@ -35,27 +35,27 @@ namespace DapperRequestEaseWebAPI.Controllers
 
 
         [HttpPost("CreateRequest")]
-        public async Task<IActionResult> CreateRequest([FromBody] Request Request)
+        public async Task<IActionResult> CreateRequest([FromBody] RequestType Request)
         {
-            var _result = await this._repo.CreateRequest(Request);
+            var _result = await this._repo.CreateRequestType(Request);
 
             return Ok(_result);
 
         }
 
         [HttpPost("UpdateRequest")]
-        public async Task<IActionResult> UpdateRequest([FromBody] Request Request)
+        public async Task<IActionResult> UpdateRequest([FromBody] RequestType Request)
         {
-            var _result = await this._repo.UpdateRequest(Request);
+            var _result = await this._repo.UpdateRequestType(Request);
 
             return Ok(_result);
 
         }
 
         [HttpPost("RemoveRequest")]
-        public async Task<IActionResult> RemoveRequest(string request_type)
+        public async Task<IActionResult> RemoveRequest(int request_type_id)
         {
-            var _result = await this._repo.RemoveRequest(request_type);
+            var _result = await this._repo.RemoveRequestType(request_type_id);
 
             return Ok(_result);
 

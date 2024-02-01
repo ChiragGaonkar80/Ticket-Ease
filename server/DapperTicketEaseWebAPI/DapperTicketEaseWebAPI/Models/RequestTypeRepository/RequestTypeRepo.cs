@@ -5,24 +5,24 @@ using System;
 
 namespace DapperTicketEaseWebAPI.Models.RequestRepository
 {
-    public class RequestRepo:IRequestRepo
+    public class RequestTypeRepo:IRequestTypeRepo
     {
         private readonly DapperDBContext context;
 
-        public RequestRepo(DapperDBContext context)
+        public RequestTypeRepo(DapperDBContext context)
         {
             this.context = context;
         }
-        public async Task<string> CreateRequest(Request request)
+        public async Task<string> CreateRequestType(RequestType requestType)
         {
             string response = string.Empty;
-            string query = "Insert into requests(firstname,lastname,email,password,profile_link,dept_id,bu_id,manager_id,blood_type,is_admin,joined_on) values  (@firstname,@lastname,@email,@password,@profile_link,@dept_id,@bu_id,@manager_id,@blood_type,@is_admin,@joined_on);";
+            string query = "Insert into requesttypes (request_type, dept_id, created_on, updated_on) values (@request_type, @dept_id, @created_on, @updated_on);";
             var parameters = new DynamicParameters();
 
-            parameters.Add("firstname", request.request_type, System.Data.DbType.String);
-            parameters.Add("dept_id", request.dept_id, System.Data.DbType.Int64);
-            parameters.Add("joined_on", request.created_on, System.Data.DbType.Date);
-            parameters.Add("joined_on", request.updated_on, System.Data.DbType.Date);
+            parameters.Add("request_type", requestType.request_type, System.Data.DbType.String);
+            parameters.Add("dept_id", requestType.dept_id, System.Data.DbType.Int64);
+            parameters.Add("created_on", requestType.created_on, System.Data.DbType.Date);
+            parameters.Add("updated_on", requestType.updated_on, System.Data.DbType.Date);
 
             using (var connection = context.CreateConnection())
             {
@@ -32,22 +32,22 @@ namespace DapperTicketEaseWebAPI.Models.RequestRepository
 
             return response;
         }
-        public async Task<List<Request>> GetAllRequests()
+        public async Task<List<RequestType>> GetAllRequestTypes()
         {
-            string query = "Select * from Request";
+            string query = "Select * from requesttypes";
             using (var connection = context.CreateConnection())
             {
-                var reqlist = await connection.QueryAsync<Request>(query);
+                var reqlist = await connection.QueryAsync<RequestType>(query);
                 return reqlist.ToList();
             }
         }
-        public async Task<string> RemoveRequest(string request_type)
+        public async Task<string> RemoveRequestType(int request_type_id)
         {
             string response = string.Empty;
-            string query = "Delete from request where request_type=@request_type";
+            string query = "Delete from requesttypes where request_type_id=@request_type_id";
             var parameters = new DynamicParameters();
 
-            parameters.Add("request_type", request_type, System.Data.DbType.String);
+            parameters.Add("request_type_id", request_type_id, System.Data.DbType.Int64);
 
             using (var connection = context.CreateConnection())
             {
@@ -58,12 +58,13 @@ namespace DapperTicketEaseWebAPI.Models.RequestRepository
             return response;
         }
 
-        public async Task<string> UpdateRequest(Request request)
+        public async Task<string> UpdateRequestType(RequestType request)
         {
             string response = string.Empty;
-            string query = "Update employees set request_type=@request_type,dept_id=@dept_id,created_on=@created_on,updated_on=@updated_on where request_type=@request_type;";
+            string query = "Update requesttypes set request_type=@request_type,dept_id=@dept_id,created_on=@created_on,updated_on=@updated_on where request_type_id=@request_type_id;";
             var parameters = new DynamicParameters();
 
+            parameters.Add("request_type_id", request.request_type_id, System.Data.DbType.String);
             parameters.Add("request_type", request.request_type, System.Data.DbType.String);
             parameters.Add("dept_id", request.dept_id, System.Data.DbType.Int64);
             parameters.Add("created_on", request.created_on, System.Data.DbType.Date);

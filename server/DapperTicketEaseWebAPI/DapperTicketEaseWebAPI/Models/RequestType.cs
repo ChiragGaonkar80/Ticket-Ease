@@ -2,10 +2,10 @@
 
 namespace DapperTicketEaseWebAPI.Models
 {
-    public class Request
+    public class RequestType
     {
         [Key]
-        public int request_id { get; set; }
+        public int request_type_id { get; set; }
         public required string request_type { get; set; }
         public int dept_id { get; set; }
         public DateTime? created_on { get; set; }

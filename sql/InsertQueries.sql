@@ -25,16 +25,20 @@ VALUES
 
 Insert into TicketStatus values('Open'),('Pending Approval'),('Resolved'),('Closed');
 
+delete from Ticket;
 
-Insert into Ticket Values('Network Issue','Cannot connect to internet',1,1,1,1,1,9,'2024-01-01','2024-01-05',0),
-						 ('Software error','Application crashing',2,2,2,2,2,9,'2024-01-05','2024-01-10',1),
-						 ('Website Downtime','Company website down',3,3,3,3,3,9,'2024-01-11','2024-01-15',0),
-						 ('Network Outage','Network outage affecting all departments',4,4,4,4,4,9,'2024-01-16','2024-01-20',1);
-Insert into dbo.Ticket Values('Electrical','Electrical',4,1,4,4,1,1,'2024-01-16','2024-01-20',1),
-						 ('Pantry Service','Pantry Service',4,1,4,4,2,3,'2024-01-16','2024-01-20',1),
-						 ('Salary Related','Salary Related',4,1,4,4,3,4,'2024-01-16','2024-01-20',1),
-						 ('Leaves & Absence','Leaves & Absence',4,1,4,4,4,5,'2024-01-16','2024-01-20',1),
-						 ('Update Profile','Update Profile',4,1,4,4,5,6,'2024-01-16','2024-01-20',1);
+--Insertions added with priority value
+Insert into Ticket Values('Network Issue','Cannot connect to internet',1,1,1,2,1,9,'2024-01-01','2024-01-05',0,1),
+						 ('Software error','Application crashing',2,2,2,1,2,9,'2024-01-05','2024-01-10',1,2),
+						 ('Website Downtime','Company website down',3,3,3,4,3,9,'2024-01-11','2024-01-15',0,3),
+						 ('Network Outage','Network outage affecting all departments',4,4,4,3,4,9,'2024-01-16','2024-01-20',1,1),
+						 ('Electrical','Electrical',4,1,4,5,1,1,'2024-01-16','2024-01-20',1,2),
+						 ('Pantry Service','Pantry Service',4,1,4,4,2,2,'2024-01-16','2024-01-20',1,3),
+						 ('Salary Related','Salary Related',4,1,4,7,3,3,'2024-01-16','2024-01-20',1,1),
+						 ('Leaves & Absence','Leaves & Absence',4,1,4,6,4,4,'2024-01-16','2024-01-20',1,2),
+						 ('Update Profile','Update Profile',4,1,4,4,4,5,'2024-01-16','2024-01-20',1,3);
+
+
 
 insert into dbo.TicketComments Values('Network Issue In progress',2,GETDATE(),GETDATE());
 insert into dbo.TicketComments Values('Network Issue Closed',2,GETDATE(),GETDATE());

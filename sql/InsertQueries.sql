@@ -24,7 +24,9 @@ VALUES
 
 
 Insert into TicketStatus values('Open'),('Pending Approval'),('Resolved'),('Closed');
+delete from Ticket;
 
+--Insertions added with priority value
 
 Insert into Ticket Values('Network Issue','Cannot connect to internet',1,1,1,1,1,9,'2024-01-01','2024-01-05',0,1),
 						 ('Software error','Application crashing',2,2,2,2,2,9,'2024-01-05','2024-01-10',1,2),

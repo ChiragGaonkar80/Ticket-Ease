@@ -32,6 +32,37 @@ namespace DapperTicketEaseWebAPI.Controllers
 
         }
 
+        [HttpGet("GetAllIncidentTickets")]
+        public async Task<IActionResult> GetAllIncidentTickets()
+        {
+            var _list = await this.repo.GetAllIncidentTickets();
+            if (_list != null)
+            {
+                return Ok(_list);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
+
+        [HttpGet("GetAllRequestTickets")]
+        public async Task<IActionResult> s()
+        {
+            var _list = await this.repo.GetAllRequestTickets();
+            if (_list != null)
+            {
+                return Ok(_list);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
 
         [HttpPost("CreateTicket")]
         public async Task<IActionResult> CreateTicket([FromBody] Ticket ticket)
@@ -57,6 +88,51 @@ namespace DapperTicketEaseWebAPI.Controllers
             var _result = await this.repo.RemoveTicket(id);
 
             return Ok(_result);
+
+        }
+
+        [HttpGet("GetAllTicketsByPriority")]
+        public async Task<IActionResult> GetAllTicketsByPriority()
+        {
+            var _list = await this.repo.GetAllTicketsByPriority();
+            if (_list != null)
+            {
+                return Ok(_list);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
+        [HttpGet("GetAllTicketsByCreationDate")]
+        public async Task<IActionResult> GetAllTicketsByCreationDate()
+        {
+            var _list = await this.repo.GetAllTicketsByCreationDate();
+            if (_list != null)
+            {
+                return Ok(_list);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
+        [HttpGet("GetAllTicketsDeptWiseByPriority")]
+        public async Task<IActionResult> GetAllTicketsDeptWiseByPriority(int dept_id, int priority)
+        {
+            var _list = await this.repo.GetAllTicketsDeptWiseByPriority(dept_id, priority);
+            if (_list != null)
+            {
+                return Ok(_list);
+            }
+            else
+            {
+                return NotFound();
+            }
 
         }
     }

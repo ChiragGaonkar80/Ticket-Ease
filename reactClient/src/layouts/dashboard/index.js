@@ -8,10 +8,6 @@ import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
 import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 
-// Data
-import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
-import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
-
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -20,6 +16,9 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 import { useState } from "react";
+
+import Projects from "layouts/dashboard/components/Projects";
+import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 
 // Dashboard components
 
@@ -337,16 +336,6 @@ function Dashboard() {
             </Grid> */}
           </Grid>
         </MDBox>
-        {/* <MDBox>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={8}>
-              <Projects />
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <OrdersOverview />
-            </Grid>
-          </Grid>
-        </MDBox> */}
       </MDBox>
       {/* <Footer />   */}
     </DashboardLayout>

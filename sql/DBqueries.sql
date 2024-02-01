@@ -73,6 +73,7 @@ CREATE TABLE dbo.Ticket(
 	created_on date,
 	updated_on date,
 	need_approval bit,
+	priority int,
 	Constraint PK_Ticket PRIMARY KEY CLUSTERED (ticket_id),
 	Constraint fk_user_ticket Foreign key (emp_id) references dbo.Employees(emp_id),
 	Constraint fk_Manager_ticket Foreign key (manager_id) references dbo.Employees(emp_id),
@@ -172,6 +173,13 @@ END;
 
 EXEC UpdateTicketStatusandAddComments @ticket_id = 2,@status_title='Closed',@comment='Now this is closed';
 
+-- Addition of priority column with values 1,2,3 -- 1 being the high priority
+Alter Table Ticket add priority int;
+
+-- Addition of priority column with values 1,2,3 -- 1 being the high priority
+Alter Table Ticket add priority int;
+
+--SP for getting counts of tickets by priority
 CREATE PROCEDURE GetTicketPriorityCountsForAdmin
     @emp_id INT
 AS

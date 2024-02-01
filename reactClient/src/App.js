@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState, useEffect, useMemo } from "react";
 
 // react-router components
@@ -35,18 +20,24 @@ import theme from "assets/theme";
 import themeDark from "assets/theme-dark";
 // Material Dashboard 2 React routes
 import routes from "routes";
+import adminRoutes from "adminRoutes";
 
 // Material Dashboard 2 React contexts
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
 
 // Images
 import brandWhite from "assets/images/TE.png";
+import Api from "utils/Api";
+import Basic from "layouts/authentication/sign-in";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
   const { miniSidenav, direction, layout, sidenavColor, darkMode } = controller;
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const { pathname } = useLocation();
+
+  const [admin, setAdmin] = useState(true);
+  const [signed, isSigned] = useState(true);
 
   const handleOnMouseEnter = () => {
     if (miniSidenav && !onMouseEnter) {
@@ -65,6 +56,25 @@ export default function App() {
   useEffect(() => {
     document.body.setAttribute("dir", direction);
   }, [direction]);
+
+  // useEffect(async () => {
+  // const token = await window.sessionStorage("authtoken");
+  // console.log("token==>>", token);
+  // if (token !== null) setAdmin(true);
+  // }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      const token = await window.sessionStorage.getItem("authtoken");
+      console.log("token==>>", token);
+      if (token !== null) setAdmin(true);
+    }
+    fetchData();
+
+    // Api.get("BU/GetAll").then((res) => {
+    //   console.log("res==>>", res);
+    // });
+  }, []);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -86,22 +96,42 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {layout === "dashboard" && (
-        <>
-          <Sidenav
-            color={sidenavColor}
-            brand={brandWhite}
-            brandName="Ticket Ease"
-            routes={routes}
-            onMouseEnter={handleOnMouseEnter}
-            onMouseLeave={handleOnMouseLeave}
-          />
-        </>
-      )}
       <Routes>
-        {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        <Route path="/authentication/sign-in" element={<Basic />} />
       </Routes>
+      {signed && admin == false && (
+        <Sidenav
+          color={sidenavColor}
+          brand={brandWhite}
+          brandName="Ticket Ease"
+          routes={routes}
+          onMouseEnter={handleOnMouseEnter}
+          onMouseLeave={handleOnMouseLeave}
+        />
+      )}
+      {signed && admin == true && (
+        <Sidenav
+          color={sidenavColor}
+          brand={brandWhite}
+          brandName="Ticket Ease"
+          routes={adminRoutes}
+          onMouseEnter={handleOnMouseEnter}
+          onMouseLeave={handleOnMouseLeave}
+        />
+      )}
+      {signed && admin == false && (
+        <Routes>
+          {getRoutes(routes)}
+          <Route path="*" element={<Navigate to="/dashboard" />} />
+        </Routes>
+      )}
+
+      {signed && admin == true && (
+        <Routes>
+          {getRoutes(adminRoutes)}
+          <Route path="*" element={<Navigate to="/admin/dashboard" />} />
+        </Routes>
+      )}
     </ThemeProvider>
   );
 }

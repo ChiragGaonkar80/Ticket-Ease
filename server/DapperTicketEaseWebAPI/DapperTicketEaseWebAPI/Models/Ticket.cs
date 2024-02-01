@@ -17,5 +17,7 @@ namespace DapperTicketEaseWebAPI.Models
         public DateTime? updated_on { get; set; }
         public bool? need_approval { get; set; }
         public string status_title { get; set; }
+
+        public int priority {  get; set; }
     }
 }

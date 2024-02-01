@@ -1,3 +1,4 @@
+import * as React from "react";
 import Grid from "@mui/material/Grid";
 
 import MDBox from "components/MDBox";
@@ -6,7 +7,29 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 
+import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
+
+import Modal from "@mui/material/Modal";
+
+import Box from "@mui/material/Box";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
 function Incidents() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const requests = [
     {
       id: 12345,
@@ -66,7 +89,7 @@ function Incidents() {
         <Grid container spacing={3}>
           {requests.map((req, i) => (
             <Grid item xs={12} md={6} lg={3} key={i}>
-              <MDBox mb={1.5}>
+              <MDBox mb={1.5} onClick={handleOpen}>
                 <ComplexStatisticsCard
                   color={req.color}
                   icon={req.icon}
@@ -83,6 +106,17 @@ function Incidents() {
           ))}
         </Grid>
       </MDBox>
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <OrdersOverview />
+        </Box>
+      </Modal>
     </DashboardLayout>
   );
 }

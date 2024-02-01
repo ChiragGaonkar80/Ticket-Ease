@@ -17,5 +17,6 @@
         public Task<string> RemoveEmployee(string email);
 
         public Task<string> SeeEmployee(string email, string password, bool isAdmin);
+        public Task<List<Employee>> GetAllManagers();
     }
 }

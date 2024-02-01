@@ -147,7 +147,6 @@ END;
 
 exec GetTicketCommentsForTicket @ticket_id=2;
 
-drop PROCEDURE UpdateTicketStatusandAddComments;
 -- SP for updating status and adding comments for particular Ticket
 CREATE PROCEDURE UpdateTicketStatusandAddComments
     @ticket_id INT,
@@ -172,9 +171,6 @@ BEGIN
 END;
 
 EXEC UpdateTicketStatusandAddComments @ticket_id = 2,@status_title='Closed',@comment='Now this is closed';
-
--- Addition of priority column with values 1,2,3 -- 1 being the high priority
-Alter Table Ticket add priority int;
 
 -- Addition of priority column with values 1,2,3 -- 1 being the high priority
 Alter Table Ticket add priority int;

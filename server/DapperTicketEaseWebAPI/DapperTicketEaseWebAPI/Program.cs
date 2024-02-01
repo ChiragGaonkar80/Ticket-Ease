@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using DapperTicketEaseWebAPI.Services.EmailService;
+using DapperTicketEaseWebAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -69,6 +71,7 @@ builder.Services.AddCors(options =>
 
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 /////////////////////////////////////////////////////////////////////////////////////
 builder.Services.AddTransient<DapperDBContext>();

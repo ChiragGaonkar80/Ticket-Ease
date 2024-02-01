@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rittwik_bera\\Pictures\\Project\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI.csproj": {}
+    "C:\\Users\\lakshita_werulkar\\Downloads\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rittwik_bera\\Pictures\\Project\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI.csproj": {
+    "C:\\Users\\lakshita_werulkar\\Downloads\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rittwik_bera\\Pictures\\Project\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\lakshita_werulkar\\Downloads\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI.csproj",
         "projectName": "DapperTicketEaseWebAPI",
-        "projectPath": "C:\\Users\\rittwik_bera\\Pictures\\Project\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI.csproj",
-        "packagesPath": "C:\\Users\\rittwik_bera\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rittwik_bera\\Pictures\\Project\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\obj\\",
+        "projectPath": "C:\\Users\\lakshita_werulkar\\Downloads\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI.csproj",
+        "packagesPath": "C:\\Users\\lakshita_werulkar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\lakshita_werulkar\\Downloads\\Ticket-Ease\\server\\DapperTicketEaseWebAPI\\DapperTicketEaseWebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\rittwik_bera\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lakshita_werulkar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

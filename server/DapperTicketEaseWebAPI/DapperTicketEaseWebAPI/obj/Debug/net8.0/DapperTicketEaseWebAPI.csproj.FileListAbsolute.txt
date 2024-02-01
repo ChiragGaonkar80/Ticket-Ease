@@ -449,3 +449,6 @@ C:\Users\rittwik_bera\Pictures\Project\Ticket-Ease\server\DapperTicketEaseWebAPI
 C:\Users\rittwik_bera\Pictures\Project\Ticket-Ease\server\DapperTicketEaseWebAPI\DapperTicketEaseWebAPI\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
 C:\Users\rittwik_bera\Pictures\Project\Ticket-Ease\server\DapperTicketEaseWebAPI\DapperTicketEaseWebAPI\bin\Debug\net8.0\MailKit.dll
 C:\Users\rittwik_bera\Pictures\Project\Ticket-Ease\server\DapperTicketEaseWebAPI\DapperTicketEaseWebAPI\bin\Debug\net8.0\MimeKit.dll
+C:\Users\lakshita_werulkar\Downloads\Ticket-Ease\server\DapperTicketEaseWebAPI\DapperTicketEaseWebAPI\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\lakshita_werulkar\Downloads\Ticket-Ease\server\DapperTicketEaseWebAPI\DapperTicketEaseWebAPI\bin\Debug\net8.0\MailKit.dll
+C:\Users\lakshita_werulkar\Downloads\Ticket-Ease\server\DapperTicketEaseWebAPI\DapperTicketEaseWebAPI\bin\Debug\net8.0\MimeKit.dll

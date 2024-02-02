@@ -59,3 +59,8 @@ Insert into dbo.RequestTypes values('Electrical',1,GETDATE(),GETDATE()),
 							  ('Course Enrollment',4,GETDATE(),GETDATE()),
 							  ('Certification assistance',4,GETDATE(),GETDATE());
 
+Insert into dbo.RequestTypes values('IT Incident',1,GETDATE(),GETDATE()),
+							  ('Admin Incident',2,GETDATE(),GETDATE()),
+							  ('HR Incident',3,GETDATE(),GETDATE()),
+							  ('L&D Incident',4,GETDATE(),GETDATE()),
+

@@ -55,7 +55,7 @@ namespace DapperTicketEaseWebAPI.Models.TicketRepository
 
         public async Task<List<Ticket>> GetAllIncidentTickets()
         {
-            string query = "Select * from ticket t inner join ticketstatus ts on t.status_id = ts.status_id;";
+            string query = "Select * from ticket t inner join ticketstatus ts on t.status_id = ts.status_id where request_type_id in (select request_type_id from requestTypes where request_type in ('IT Incident', 'Admin Incident', 'HR Incident', 'L&D Incident'));";
             using (var connection = context.CreateConnection())
             {
                 var ticketlist = await connection.QueryAsync<Ticket>(query);
@@ -66,7 +66,7 @@ namespace DapperTicketEaseWebAPI.Models.TicketRepository
 
         public async Task<List<Ticket>> GetAllRequestTickets()
         {
-            string query = "Select * from ticket t inner join ticketstatus ts on t.status_id = ts.status_id;";
+            string query = "Select * from ticket t inner join ticketstatus ts on t.status_id = ts.status_id where request_type_id in (select request_type_id from requestTypes where request_type not in ('IT Incident', 'Admin Incident', 'HR Incident', 'L&D Incident'));";
             using (var connection = context.CreateConnection())
             {
                 var ticketlist = await connection.QueryAsync<Ticket>(query);
@@ -159,7 +159,7 @@ namespace DapperTicketEaseWebAPI.Models.TicketRepository
 
         public async Task<List<Ticket>> GetAllIncidentTicketsByEmpId(int emp_id)
         {
-            string query = "Select * from ticket t inner join ticketstatus ts on t.status_id = ts.status_id where emp_id=@emp_id;";
+            string query = "Select * from ticket t inner join ticketstatus ts on t.status_id = ts.status_id where emp_id=@emp_id and request_type_id in (select request_type_id from requestTypes where request_type in ('IT Incident', 'Admin Incident', 'HR Incident', 'L&D Incident'));";
             var parameters = new DynamicParameters();
 
             parameters.Add("emp_id", emp_id, System.Data.DbType.Int64);
@@ -173,7 +173,7 @@ namespace DapperTicketEaseWebAPI.Models.TicketRepository
 
         public async Task<List<Ticket>> GetAllRequestTicketsByEmpId(int emp_id)
         {
-            string query = "Select * from ticket t inner join ticketstatus ts on t.status_id = ts.status_id where emp_id=@emp_id;";
+            string query = "Select * from ticket t inner join ticketstatus ts on t.status_id = ts.status_id where emp_id=@emp_id and request_type_id in (select request_type_id from requestTypes where request_type not in ('IT Incident', 'Admin Incident', 'HR Incident', 'L&D Incident'));";
             var parameters = new DynamicParameters();
 
             parameters.Add("emp_id", emp_id, System.Data.DbType.Int64);

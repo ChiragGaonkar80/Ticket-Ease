@@ -164,7 +164,7 @@ namespace DapperTicketEaseWebAPI.Controllers
             var token = new JwtSecurityToken(
                 issuer: _configuration["JWTSettings:Issuer"],
                 audience: _configuration["JWTSettings:Audience"],
-                expires: DateTime.Now.AddSeconds(30),
+                expires: DateTime.Now.AddMinutes(3),
                 signingCredentials: credentials
                 
                 );

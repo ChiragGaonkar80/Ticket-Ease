@@ -26,7 +26,7 @@ Constraint PK_Dept PRIMARY KEY CLUSTERED (dept_id)
 
 -- Employees Table
 CREATE TABLE dbo.Employees (
-    emp_id INT IDENTITY (1,1) NOT NULL,
+    emp_id INT NOT NULL,
     firstname varchar(255) NOT NULL,
 	lastname varchar(255) NOT NULL,
 	email varchar(255) NOT NULL,
@@ -37,6 +37,7 @@ CREATE TABLE dbo.Employees (
 	manager_id int NULL,
 	blood_type char(10) NOT NULL,
 	is_admin bit not null,
+	is_manager bit not null default 0,
 	joined_on datetime,
 	Constraint PK_emp PRIMARY KEY CLUSTERED (emp_id),
 	Constraint fk_dept FOREIGN KEY (dept_id)
@@ -73,7 +74,6 @@ CREATE TABLE dbo.Ticket(
 	created_on date,
 	updated_on date,
 	need_approval bit,
-	priority int,
 	Constraint PK_Ticket PRIMARY KEY CLUSTERED (ticket_id),
 	Constraint fk_user_ticket Foreign key (emp_id) references dbo.Employees(emp_id),
 	Constraint fk_Manager_ticket Foreign key (manager_id) references dbo.Employees(emp_id),
@@ -196,3 +196,15 @@ BEGIN
     WHERE t.dept_id = @dept_id
     GROUP BY t.priority;
 END;
+
+
+
+
+  alter table employees add is_manager bit not null default 0;
+
+  --drop table TicketComments;
+  --drop table Ticket;
+  --drop table RequestTypes;
+  --drop table Employees;
+
+  

@@ -8,6 +8,10 @@
 
         public Task<List<Ticket>> GetAllRequestTickets();
 
+        public Task<List<Ticket>> GetAllIncidentTicketsByEmpId(int emp_id);
+
+        public Task<List<Ticket>> GetAllRequestTicketsByEmpId(int emp_id);
+
         public Task<string> CreateTicket(Ticket ticket);
 
         public Task<string> UpdateTicket(Ticket ticket);

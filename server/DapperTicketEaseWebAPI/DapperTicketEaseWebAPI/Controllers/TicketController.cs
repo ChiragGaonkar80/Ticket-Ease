@@ -63,6 +63,37 @@ namespace DapperTicketEaseWebAPI.Controllers
 
         }
 
+        [HttpGet("GetAllIncidentTicketsByEmpId")]
+        public async Task<IActionResult> GetAllIncidentTicketsByEmpId( int emp_id)
+        {
+            var _list = await this.repo.GetAllIncidentTicketsByEmpId(emp_id);
+            if (_list != null)
+            {
+                return Ok(_list);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
+
+        [HttpGet("GetAllRequestTicketsByEmpId")]
+        public async Task<IActionResult> GetAllRequestTicketsByEmpId( int emp_id)
+        {
+            var _list = await this.repo.GetAllRequestTicketsByEmpId(emp_id);
+            if (_list != null)
+            {
+                return Ok(_list);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
 
         [HttpPost("CreateTicket")]
         public async Task<IActionResult> CreateTicket([FromBody] Ticket ticket)

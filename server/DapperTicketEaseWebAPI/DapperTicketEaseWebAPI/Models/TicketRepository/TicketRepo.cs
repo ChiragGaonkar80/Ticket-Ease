@@ -156,5 +156,33 @@ namespace DapperTicketEaseWebAPI.Models.TicketRepository
                 return ticketlist.ToList();
             }
         }
+
+        public async Task<List<Ticket>> GetAllIncidentTicketsByEmpId(int emp_id)
+        {
+            string query = "Select * from ticket t inner join ticketstatus ts on t.status_id = ts.status_id where emp_id=@emp_id;";
+            var parameters = new DynamicParameters();
+
+            parameters.Add("emp_id", emp_id, System.Data.DbType.Int64);
+            using (var connection = context.CreateConnection())
+            {
+                var ticketlist = await connection.QueryAsync<Ticket>(query, parameters);
+                return ticketlist.ToList();
+
+            }
+        }
+
+        public async Task<List<Ticket>> GetAllRequestTicketsByEmpId(int emp_id)
+        {
+            string query = "Select * from ticket t inner join ticketstatus ts on t.status_id = ts.status_id where emp_id=@emp_id;";
+            var parameters = new DynamicParameters();
+
+            parameters.Add("emp_id", emp_id, System.Data.DbType.Int64);
+            using (var connection = context.CreateConnection())
+            {
+                var ticketlist = await connection.QueryAsync<Ticket>(query, parameters);
+                return ticketlist.ToList();
+
+            }
+        }
     }
 }

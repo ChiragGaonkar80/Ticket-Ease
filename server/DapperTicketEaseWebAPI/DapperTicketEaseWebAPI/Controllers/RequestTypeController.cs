@@ -43,7 +43,7 @@ namespace DapperRequestEaseWebAPI.Controllers
 
         }
 
-        [HttpPost("UpdateRequest")]
+        [HttpPut("UpdateRequest")]
         public async Task<IActionResult> UpdateRequest([FromBody] RequestType Request)
         {
             var _result = await this._repo.UpdateRequestType(Request);
@@ -52,7 +52,7 @@ namespace DapperRequestEaseWebAPI.Controllers
 
         }
 
-        [HttpPost("RemoveRequest")]
+        [HttpDelete("RemoveRequest")]
         public async Task<IActionResult> RemoveRequest(int request_type_id)
         {
             var _result = await this._repo.RemoveRequestType(request_type_id);

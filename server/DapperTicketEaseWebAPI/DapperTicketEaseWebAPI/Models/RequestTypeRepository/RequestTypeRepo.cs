@@ -16,16 +16,15 @@ namespace DapperTicketEaseWebAPI.Models.RequestRepository
         public async Task<string> CreateRequestType(RequestType requestType)
         {
             string response = string.Empty;
-            string query = "Insert into requesttypes (request_type_id, request_type, dept_id, is_incident, structure, created_on, updated_on) values (@request_type_id, @request_type, @dept_id, @is_incident, @structure, @created_on, @updated_on);";
+            string query = "Insert into requesttypes (request_type_id, request_type, dept_id, description, is_incident, structure) values (@request_type_id, @request_type, @dept_id, @description, @is_incident, @structure);";
             var parameters = new DynamicParameters();
 
             parameters.Add("request_type_id", requestType.request_type_id, System.Data.DbType.Int64);
             parameters.Add("request_type", requestType.request_type, System.Data.DbType.String);
             parameters.Add("dept_id", requestType.dept_id, System.Data.DbType.Int64);
+            parameters.Add("description", requestType.description, System.Data.DbType.String);
             parameters.Add("is_incident", requestType.is_incident, System.Data.DbType.Boolean);
             parameters.Add("structure", requestType.request_type, System.Data.DbType.String);
-            parameters.Add("created_on", requestType.created_on, System.Data.DbType.Date);
-            parameters.Add("updated_on", requestType.updated_on, System.Data.DbType.Date);
 
             using (var connection = context.CreateConnection())
             {
@@ -79,14 +78,13 @@ namespace DapperTicketEaseWebAPI.Models.RequestRepository
         public async Task<string> UpdateRequestType(RequestType request)
         {
             string response = string.Empty;
-            string query = "Update requesttypes set request_type=@request_type,dept_id=@dept_id,created_on=@created_on,updated_on=@updated_on where request_type_id=@request_type_id;";
+            string query = "Update requesttypes set request_type=@request_type,dept_id=@dept_id, description=@description where request_type_id=@request_type_id;";
             var parameters = new DynamicParameters();
 
             parameters.Add("request_type_id", request.request_type_id, System.Data.DbType.String);
             parameters.Add("request_type", request.request_type, System.Data.DbType.String);
             parameters.Add("dept_id", request.dept_id, System.Data.DbType.Int64);
-            parameters.Add("created_on", request.created_on, System.Data.DbType.Date);
-            parameters.Add("updated_on", request.updated_on, System.Data.DbType.Date);
+            parameters.Add("description", request.description, System.Data.DbType.String);
 
             using (var connection = context.CreateConnection())
             {

@@ -28,23 +28,23 @@ VALUES
 Insert into TicketStatus values(1, 'Open'),(2, 'Pending Approval'),(3, 'Resolved'),(4, 'Closed');
 
 
-Insert into dbo.RequestTypes values(1, 'Electrical',1,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
-							  (2, 'Travel Request',1,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
-							  (3, 'Pantry Service',1,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
-							  (4, 'Salary Related',2,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
-							  (5, 'Leaves & Absence',2,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
-							  (6, 'Update Profile and skills',2,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
-							  (7, 'Gen AI tools',3,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
-							  (8, 'Hardware Request',3,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
-							  (9, 'Software Installation & uninstallation',3,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
-							  (10, 'Training Request & assistance',4,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
-							  (11, 'Course Enrollment',4,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
-							  (12, 'Certification assistance',4,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE());
+Insert into dbo.RequestTypes values(1, 'Electrical',1, 'Description',0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]'),
+							  (2, 'Travel Request',1,'Description',0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]'),
+							  (3, 'Pantry Service',1,'Description',0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]'),
+							  (4, 'Salary Related',2,'Description',0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]'),
+							  (5, 'Leaves & Absence',2,'Description',0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]'),
+							  (6, 'Update Profile and skills',2,'Description',0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]'),
+							  (7, 'Gen AI tools',3,'Description',0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]'),
+							  (8, 'Hardware Request',3,'Description',0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]'),
+							  (9, 'Software Installation & uninstallation',3,'Description',0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]'),
+							  (10, 'Training Request & assistance',4,'Description',0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]'),
+							  (11, 'Course Enrollment',4,'Description',0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]'),
+							  (12, 'Certification assistance',4,'Description',0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]');
 
-Insert into dbo.RequestTypes values(13, 'IT Incident',1,1,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
-							  (14, 'Admin Incident',2,1,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
-							  (15, 'HR Incident',3,1,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
-							  (16, 'L&D Incident',4,1,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE());
+Insert into dbo.RequestTypes values(13, 'IT Incident',1,'Description',1,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]'),
+							  (14, 'Admin Incident',2,'Description',1,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]'),
+							  (15, 'HR Incident',3,'Description',1,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]'),
+							  (16, 'L&D Incident',4,'Description',1,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]');
 
 
 Insert into Ticket Values(1, 'Network Issue',null,1,1,null,1,1,9,1,'2024-01-01','2024-01-05',0),
@@ -66,6 +66,4 @@ Insert into Ticket Values(1, 'Network Issue',null,1,1,null,1,1,9,1,'2024-01-01',
 insert into dbo.TicketComments Values(1, 'Network Issue In progress',2,'Open',GETDATE(),GETDATE());
 insert into dbo.TicketComments Values(2, 'Network Issue Closed',2,'Pending Approval',GETDATE(),GETDATE());
 
-
-
-
+select structure as struct from dbo.requesttypes for json path;

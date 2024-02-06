@@ -53,10 +53,9 @@ CREATE TABLE dbo.RequestTypes(
 	request_type_id int NOT NULL,
 	request_type varchar(255) not null,
 	dept_id int not null,
+	description varchar(max) not null,
 	is_incident bit not null default 0,
 	structure varchar(max) null,
-	created_on date,
-	updated_on date,
 	Constraint PK_request_type PRIMARY KEY CLUSTERED (request_type_id),
 	Constraint fk_dept_request_type Foreign key (dept_id) references dbo.Department(dept_id)
 );

@@ -157,29 +157,55 @@ namespace DapperTicketEaseWebAPI.Models.TicketRepository
             }
         }
 
-        public async Task<List<Ticket>> GetAllIncidentTicketsByEmpId(int emp_id)
+        public async Task<List<IncidentTickets>> GetAllIncidentTicketsByEmpId(int emp_id)
         {
-            string query = "Select * from ticket t inner join ticketstatus ts on t.status_id = ts.status_id where emp_id=@emp_id and request_type_id in (select request_type_id from requestTypes where is_incident = 1);";
+            string query = "SELECT t.ticket_id, " +
+                "t.priority, " +
+                "e.email as employee_email, " +
+                "e.firstname as employee_firstname," +
+                "e.lastname as employee_lastname," +
+                "m.firstname as manager_firstname," +
+                "m.lastname as manager_lastname," +
+                "m.email as manager_email," +
+                "ts.status_title as status, " +
+                "r.request_type,t.created_on as created_on from dbo.Ticket t inner join dbo.Employees e " +
+                "on t.emp_id=e.emp_id inner join dbo.Employees m on e.manager_id=m.emp_id inner join dbo.TicketStatus ts on t.status_id=ts.status_id inner join dbo.RequestTypes r on t.request_type_id=r.request_type_id " +
+                "where e.dept_id = " +
+                "(select dept_id from dbo.Employees where emp_id=@emp_id)  " +
+                "and r.is_incident = 0 order by t.priority;";
             var parameters = new DynamicParameters();
 
             parameters.Add("emp_id", emp_id, System.Data.DbType.Int64);
             using (var connection = context.CreateConnection())
             {
-                var ticketlist = await connection.QueryAsync<Ticket>(query, parameters);
+                var ticketlist = await connection.QueryAsync<IncidentTickets>(query, parameters);
                 return ticketlist.ToList();
 
             }
         }
 
-        public async Task<List<Ticket>> GetAllRequestTicketsByEmpId(int emp_id)
+        public async Task<List<RequestTickets>> GetAllRequestTicketsByEmpId(int emp_id)
         {
-            string query = "Select * from ticket t inner join ticketstatus ts on t.status_id = ts.status_id where emp_id=@emp_id and request_type_id in (select request_type_id from requestTypes where is_incident = 0);";
+            string query = "SELECT t.ticket_id, " +
+                "t.priority, " +
+                "e.email as employee_email, " +
+                "e.firstname as employee_firstname," +
+                "e.lastname as employee_lastname," +
+                "m.firstname as manager_firstname," +
+                "m.lastname as manager_lastname," +
+                "m.email as manager_email," +
+                "ts.status_title as status, " +
+                "r.request_type,t.created_on as created_on from dbo.Ticket t inner join dbo.Employees e " +
+                "on t.emp_id=e.emp_id inner join dbo.Employees m on e.manager_id=m.emp_id inner join dbo.TicketStatus ts on t.status_id=ts.status_id inner join dbo.RequestTypes r on t.request_type_id=r.request_type_id " +
+                "where e.dept_id = " +
+                "(select dept_id from dbo.Employees where emp_id=@emp_id)  " +
+                "and r.is_incident = 1 order by t.priority;"; 
             var parameters = new DynamicParameters();
 
             parameters.Add("emp_id", emp_id, System.Data.DbType.Int64);
             using (var connection = context.CreateConnection())
             {
-                var ticketlist = await connection.QueryAsync<Ticket>(query, parameters);
+                var ticketlist = await connection.QueryAsync<RequestTickets>(query, parameters);
                 return ticketlist.ToList();
 
             }

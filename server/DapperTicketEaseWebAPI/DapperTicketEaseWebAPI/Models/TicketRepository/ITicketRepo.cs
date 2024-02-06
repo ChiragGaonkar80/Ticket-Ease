@@ -8,9 +8,9 @@
 
         public Task<List<Ticket>> GetAllRequestTickets();
 
-        public Task<List<Ticket>> GetAllIncidentTicketsByEmpId(int emp_id);
+        public Task<List<IncidentTickets>> GetAllIncidentTicketsByEmpId(int emp_id);
 
-        public Task<List<Ticket>> GetAllRequestTicketsByEmpId(int emp_id);
+        public Task<List<RequestTickets>> GetAllRequestTicketsByEmpId(int emp_id);
 
         public Task<string> CreateTicket(Ticket ticket);
 

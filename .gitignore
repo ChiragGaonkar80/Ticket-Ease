@@ -5,7 +5,8 @@
 
 # dotenv files
 .env
-
+server/DapperTicketEaseWebAPI/DapperTicketEaseWebAPI/bin
+server/DapperTicketEaseWebAPI/DapperTicketEaseWebAPI/obj
 # User-specific files
 *.rsuser
 *.suo

@@ -43,7 +43,7 @@ namespace DapperTicketEaseWebAPI.Controllers
 
         }
 
-        [HttpPost("UpdateBU")]
+        [HttpPut("UpdateBU")]
         public async Task<IActionResult> UpdateBU([FromBody] BU bu)
         {
             var _result = await this.repo.UpdateBU(bu);
@@ -52,7 +52,7 @@ namespace DapperTicketEaseWebAPI.Controllers
 
         }
 
-        [HttpPost("RemoveBU")]
+        [HttpDelete("RemoveBU")]
         public async Task<IActionResult> RemoveBU(int id)
         {
             var _result = await this.repo.RemoveBU(id);

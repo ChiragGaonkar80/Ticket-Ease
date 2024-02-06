@@ -3,7 +3,7 @@ use ticketease;
 
 -- BU Table
 CREATE TABLE dbo.BU (
-    bu_id INT IDENTITY (1,1) NOT NULL,
+    bu_id INT NOT NULL,
     bu_name varchar(255) NOT NULL,
     is_du Bit,
 	Constraint PK_BU PRIMARY KEY CLUSTERED (bu_id)
@@ -11,14 +11,14 @@ CREATE TABLE dbo.BU (
 
 -- TicketStatus Table
 create table dbo.TicketStatus(
-status_id int identity(1,1),
+status_id int not null,
 status_title varchar(255),
 Constraint PK_TicketStatus PRIMARY KEY CLUSTERED (status_id)
 );
 
 -- Department Table
 create table dbo.Department(
-dept_id int identity(1,1),
+dept_id int not null,
 dept_name varchar(255),
 dept_head varchar(255),
 Constraint PK_Dept PRIMARY KEY CLUSTERED (dept_id)
@@ -50,24 +50,25 @@ CREATE TABLE dbo.Employees (
 
 -- RequestTypes Table
 CREATE TABLE dbo.RequestTypes(
-	request_type_id int IDENTITY (1,1) NOT NULL,
+	request_type_id int NOT NULL,
 	request_type varchar(255) not null,
 	dept_id int not null,
-	created_on date,
-	updated_on date,
+	description varchar(max) not null,
+	is_incident bit not null default 0,
+	structure varchar(max) null,
 	Constraint PK_request_type PRIMARY KEY CLUSTERED (request_type_id),
 	Constraint fk_dept_request_type Foreign key (dept_id) references dbo.Department(dept_id)
 );
 
 -- Ticket Table
 CREATE TABLE dbo.Ticket(
-	ticket_id INT IDENTITY (1,1) NOT NULL,
+	ticket_id INT NOT NULL,
     title varchar(255) NOT NULL,
-	description varchar(255) not null,
+	formdata varchar(max) null,
 	emp_id int not null,
 	dept_id int not null,
-	admin_id int not null,
-	manager_id int not null,
+	admin_id int null,
+	manager_id int null,
 	status_id int not null,
 	request_type_id int not null,
 	priority int,
@@ -76,6 +77,7 @@ CREATE TABLE dbo.Ticket(
 	need_approval bit,
 	Constraint PK_Ticket PRIMARY KEY CLUSTERED (ticket_id),
 	Constraint fk_user_ticket Foreign key (emp_id) references dbo.Employees(emp_id),
+	Constraint fk_Admin_ticket Foreign key (admin_id) references dbo.Employees(emp_id),
 	Constraint fk_Manager_ticket Foreign key (manager_id) references dbo.Employees(emp_id),
 	Constraint fk_status_ticket Foreign key (status_id) references dbo.TicketStatus(status_id),
 	Constraint fk_dept_ticket FOREIGN KEY (dept_id) REFERENCES dbo.Department(dept_id),
@@ -84,7 +86,7 @@ CREATE TABLE dbo.Ticket(
 
 -- TicketComments Table
 CREATE TABLE dbo.TicketComments(
-	comment_id int IDENTITY (1,1) NOT NULL,
+	comment_id int NOT NULL,
 	description varchar(255) not null,
 	ticket_id int not null,
 	status_title varchar(255) not null,
@@ -198,13 +200,17 @@ BEGIN
 END;
 
 
+use ticketease;
 
 
   alter table employees add is_manager bit not null default 0;
 
-  --drop table TicketComments;
-  --drop table Ticket;
-  --drop table RequestTypes;
-  --drop table Employees;
+  drop table TicketComments;
+  drop table Ticket;
+  drop table RequestTypes;
+  drop table Employees;
+  drop table BU;
+  drop table Department;
+  drop table TicketStatus;
 
   

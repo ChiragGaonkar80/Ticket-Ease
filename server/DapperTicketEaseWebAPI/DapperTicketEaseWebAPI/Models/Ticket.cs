@@ -7,7 +7,7 @@ namespace DapperTicketEaseWebAPI.Models
         [Key]
         public int ticket_id { get; set; }
         public string title { get; set; }
-        public string description { get; set; }
+        public string formdata { get; set; }
         public int emp_id { get; set; }
         public int dept_id { get; set; }
         public int admin_id { get; set; }

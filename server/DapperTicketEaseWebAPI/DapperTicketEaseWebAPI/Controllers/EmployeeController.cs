@@ -138,7 +138,7 @@ namespace DapperTicketEaseWebAPI.Controllers
       
         }
 
-        [HttpPost("UpdateEmployee")]
+        [HttpPut("UpdateEmployee")]
         public async Task<IActionResult> UpdateEmployee([FromBody] Employee employee)
         {
             var _result = await this.repo.UpdateEmployee(employee);
@@ -147,7 +147,7 @@ namespace DapperTicketEaseWebAPI.Controllers
 
         }
 
-        [HttpPost("RemoveEmployee")]
+        [HttpDelete("RemoveEmployee")]
         public async Task<IActionResult> RemoveEmployee(string email)
         {
             var _result = await this.repo.RemoveEmployee(email);

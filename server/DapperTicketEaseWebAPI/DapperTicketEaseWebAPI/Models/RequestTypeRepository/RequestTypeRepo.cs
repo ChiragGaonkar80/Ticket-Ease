@@ -16,11 +16,14 @@ namespace DapperTicketEaseWebAPI.Models.RequestRepository
         public async Task<string> CreateRequestType(RequestType requestType)
         {
             string response = string.Empty;
-            string query = "Insert into requesttypes (request_type, dept_id, created_on, updated_on) values (@request_type, @dept_id, @created_on, @updated_on);";
+            string query = "Insert into requesttypes (request_type_id, request_type, dept_id, is_incident, structure, created_on, updated_on) values (@request_type_id, @request_type, @dept_id, @is_incident, @structure, @created_on, @updated_on);";
             var parameters = new DynamicParameters();
 
+            parameters.Add("request_type_id", requestType.request_type_id, System.Data.DbType.Int64);
             parameters.Add("request_type", requestType.request_type, System.Data.DbType.String);
             parameters.Add("dept_id", requestType.dept_id, System.Data.DbType.Int64);
+            parameters.Add("is_incident", requestType.is_incident, System.Data.DbType.Boolean);
+            parameters.Add("structure", requestType.request_type, System.Data.DbType.String);
             parameters.Add("created_on", requestType.created_on, System.Data.DbType.Date);
             parameters.Add("updated_on", requestType.updated_on, System.Data.DbType.Date);
 
@@ -41,6 +44,21 @@ namespace DapperTicketEaseWebAPI.Models.RequestRepository
                 return reqlist.ToList();
             }
         }
+
+        public async Task<RequestType> GetRequestTypeById(int request_type_id)
+        {
+            string query = "Select * from requesttypes where request_type_id=@request_type_id";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("request_type_id", request_type_id, System.Data.DbType.Int64);
+
+            using (var connection = context.CreateConnection())
+            {
+                var requestType = await connection.QueryFirstOrDefaultAsync<RequestType>(query, parameters);
+                return requestType;
+            }
+        }
+
         public async Task<string> RemoveRequestType(int request_type_id)
         {
             string response = string.Empty;

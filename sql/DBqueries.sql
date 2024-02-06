@@ -53,6 +53,8 @@ CREATE TABLE dbo.RequestTypes(
 	request_type_id int NOT NULL,
 	request_type varchar(255) not null,
 	dept_id int not null,
+	is_incident bit not null default 0,
+	structure varchar(max) null,
 	created_on date,
 	updated_on date,
 	Constraint PK_request_type PRIMARY KEY CLUSTERED (request_type_id),
@@ -63,7 +65,7 @@ CREATE TABLE dbo.RequestTypes(
 CREATE TABLE dbo.Ticket(
 	ticket_id INT NOT NULL,
     title varchar(255) NOT NULL,
-	description varchar(255) not null,
+	formdata varchar(max) null,
 	emp_id int not null,
 	dept_id int not null,
 	admin_id int null,

@@ -33,6 +33,21 @@ namespace DapperRequestEaseWebAPI.Controllers
 
         }
 
+        [HttpGet("GetRequestTypeById")]
+        public async Task<IActionResult> GetRequestTypeById(int request_type_id)
+        {
+            var _requestType = await this._repo.GetRequestTypeById(request_type_id);
+            if (_requestType != null)
+            {
+                return Ok(_requestType);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
 
         [HttpPost("CreateRequest")]
         public async Task<IActionResult> CreateRequest([FromBody] RequestType Request)

@@ -28,40 +28,40 @@ VALUES
 Insert into TicketStatus values(1, 'Open'),(2, 'Pending Approval'),(3, 'Resolved'),(4, 'Closed');
 
 
-Insert into dbo.RequestTypes values(1, 'Electrical',1,GETDATE(),GETDATE()),
-							  (2, 'Travel Request',1,GETDATE(),GETDATE()),
-							  (3, 'Pantry Service',1,GETDATE(),GETDATE()),
-							  (4, 'Salary Related',2,GETDATE(),GETDATE()),
-							  (5, 'Leaves & Absence',2,GETDATE(),GETDATE()),
-							  (6, 'Update Profile and skills',2,GETDATE(),GETDATE()),
-							  (7, 'Gen AI tools',3,GETDATE(),GETDATE()),
-							  (8, 'Hardware Request',3,GETDATE(),GETDATE()),
-							  (9, 'Software Installation & uninstallation',3,GETDATE(),GETDATE()),
-							  (10, 'Training Request & assistance',4,GETDATE(),GETDATE()),
-							  (11, 'Course Enrollment',4,GETDATE(),GETDATE()),
-							  (12, 'Certification assistance',4,GETDATE(),GETDATE());
+Insert into dbo.RequestTypes values(1, 'Electrical',1,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
+							  (2, 'Travel Request',1,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
+							  (3, 'Pantry Service',1,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
+							  (4, 'Salary Related',2,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
+							  (5, 'Leaves & Absence',2,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
+							  (6, 'Update Profile and skills',2,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
+							  (7, 'Gen AI tools',3,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
+							  (8, 'Hardware Request',3,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
+							  (9, 'Software Installation & uninstallation',3,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
+							  (10, 'Training Request & assistance',4,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
+							  (11, 'Course Enrollment',4,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
+							  (12, 'Certification assistance',4,0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE());
 
-Insert into dbo.RequestTypes values(13, 'IT Incident',1,GETDATE(),GETDATE()),
-							  (14, 'Admin Incident',2,GETDATE(),GETDATE()),
-							  (15, 'HR Incident',3,GETDATE(),GETDATE()),
-							  (16, 'L&D Incident',4,GETDATE(),GETDATE());
+Insert into dbo.RequestTypes values(13, 'IT Incident',1,1,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
+							  (14, 'Admin Incident',2,1,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
+							  (15, 'HR Incident',3,1,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE()),
+							  (16, 'L&D Incident',4,1,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]',GETDATE(),GETDATE());
 
 
-Insert into Ticket Values(1, 'Network Issue','Cannot connect to internet',1,1,null,1,1,9,1,'2024-01-01','2024-01-05',0),
-						 (2, 'Software error','Application crashing',2,2,null,2,2,9,2,'2024-01-05','2024-01-10',1),
-						 (3, 'Website Downtime','Company website down',3,3,null,3,3,9,3,'2024-01-11','2024-01-15',0),
-						 (4, 'Network Outage','Network outage affecting all departments',4,4,null,4,4,9,3,'2024-01-16','2024-01-20',1),
-						 (5, 'Electrical','Electrical',9,1,null,4,1,1,1,'2024-01-16','2024-01-20',1),
-						 (6, 'Pantry Service','Pantry Service',10,1,null,4,2,3,3,'2024-01-16','2024-01-20',1),
-						 (7, 'Salary Related','Salary Related',12,1,null,4,3,4,1,'2024-01-16','2024-01-20',1),
-						 (8, 'Leaves & Absence','Leaves & Absence',14,1,null,4,4,5,2,'2024-01-16','2024-01-20',1),
-						 (9, 'Leaves & Absence','Leaves & Absence',2,1,null,4,4,5,2,'2024-01-16','2024-01-20',1),
-						 (10, 'Leaves & Absence','Leaves & Absence',3,1,null,4,4,5,3,'2024-01-16','2024-01-20',1),
-						 (11, 'Update Profile','Update Profile',4,1,null,4,2,6,1,'2024-01-16','2024-01-20',1),
-						 (12, 'Keyboard Issue','Some keys not working',6,1,null,1,1,13,0,GETDATE(),GETDATE(),1),
-						 (13, 'Access card issue','Card not working',6,2,null,1,2,14,0,GETDATE(),GETDATE(),1),
-						 (14, 'Leave issue','Leave balance not showing',6,3,null,1,1,15,1,GETDATE(),GETDATE(),1),
-						 (15, 'Course issue','course details no showing',6,4,null,1,2,16,2,GETDATE(),GETDATE(),1);
+Insert into Ticket Values(1, 'Network Issue',null,1,1,null,1,1,9,1,'2024-01-01','2024-01-05',0),
+						 (2, 'Software error',null,2,2,null,2,2,9,2,'2024-01-05','2024-01-10',1),
+						 (3, 'Website Downtime',null,3,3,null,3,3,9,3,'2024-01-11','2024-01-15',0),
+						 (4, 'Network Outage',null,4,4,null,4,4,9,3,'2024-01-16','2024-01-20',1),
+						 (5, 'Electrical',null,9,1,null,4,1,1,1,'2024-01-16','2024-01-20',1),
+						 (6, 'Pantry Service',null,10,1,null,4,2,3,3,'2024-01-16','2024-01-20',1),
+						 (7, 'Salary Related',null,12,1,null,4,3,4,1,'2024-01-16','2024-01-20',1),
+						 (8, 'Leaves & Absence',null,14,1,null,4,4,5,2,'2024-01-16','2024-01-20',1),
+						 (9, 'Leaves & Absence',null,2,1,null,4,4,5,2,'2024-01-16','2024-01-20',1),
+						 (10, 'Leaves & Absence',null,3,1,null,4,4,5,3,'2024-01-16','2024-01-20',1),
+						 (11, 'Update Profile',null,4,1,null,4,2,6,1,'2024-01-16','2024-01-20',1),
+						 (12, 'Keyboard Issue',null,6,1,null,1,1,13,0,GETDATE(),GETDATE(),1),
+						 (13, 'Access card issue',null,6,2,null,1,2,14,0,GETDATE(),GETDATE(),1),
+						 (14, 'Leave issue',null,6,3,null,1,1,15,1,GETDATE(),GETDATE(),1),
+						 (15, 'Course issue',null,6,4,null,1,2,16,2,GETDATE(),GETDATE(),1);
 
 insert into dbo.TicketComments Values(1, 'Network Issue In progress',2,'Open',GETDATE(),GETDATE());
 insert into dbo.TicketComments Values(2, 'Network Issue Closed',2,'Pending Approval',GETDATE(),GETDATE());

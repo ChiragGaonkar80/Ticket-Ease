@@ -48,6 +48,21 @@ namespace DapperRequestEaseWebAPI.Controllers
 
         }
 
+        [HttpGet("GetRequestTypesByDeptId")]
+        public async Task<IActionResult> GetRequestTypesByDeptId(int dept_id)
+        {
+            var _requestList = await this._repo.GetRequestTypesByDeptId(dept_id);
+            if (_requestList != null)
+            {
+                return Ok(_requestList);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
 
         [HttpPost("CreateRequest")]
         public async Task<IActionResult> CreateRequest([FromBody] RequestType Request)

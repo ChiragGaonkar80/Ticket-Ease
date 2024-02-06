@@ -28,7 +28,7 @@ VALUES
 Insert into TicketStatus values(1, 'Open'),(2, 'Pending Approval'),(3, 'Resolved'),(4, 'Closed');
 
 
-Insert into dbo.RequestTypes values(1, 'Electrical',1, 'Description',0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]'),
+Insert into dbo.RequestTypes values(1, 'Electrical',1, 'Description',0,'[{key:"name",title:"FullName",},{key:"location",title:"Location",},]'),
 							  (2, 'Travel Request',1,'Description',0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]'),
 							  (3, 'Pantry Service',1,'Description',0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]'),
 							  (4, 'Salary Related',2,'Description',0,'[{key:\"name\",title:\"FullName\",},{key:\"location\",title:\"Location\",},]'),
@@ -66,4 +66,4 @@ Insert into Ticket Values(1, 'Network Issue',null,1,1,null,1,1,9,1,'2024-01-01',
 insert into dbo.TicketComments Values(1, 'Network Issue In progress',2,'Open',GETDATE(),GETDATE());
 insert into dbo.TicketComments Values(2, 'Network Issue Closed',2,'Pending Approval',GETDATE(),GETDATE());
 
-select structure as struct from dbo.requesttypes for json path;
+select * from dbo.requesttypes;

@@ -24,7 +24,7 @@ namespace DapperTicketEaseWebAPI.Models.RequestRepository
             parameters.Add("dept_id", requestType.dept_id, System.Data.DbType.Int64);
             parameters.Add("description", requestType.description, System.Data.DbType.String);
             parameters.Add("is_incident", requestType.is_incident, System.Data.DbType.Boolean);
-            parameters.Add("structure", requestType.request_type, System.Data.DbType.String);
+            parameters.Add("structure", requestType.structure, System.Data.DbType.String);
 
             using (var connection = context.CreateConnection())
             {
@@ -56,6 +56,21 @@ namespace DapperTicketEaseWebAPI.Models.RequestRepository
                 var requestType = await connection.QueryFirstOrDefaultAsync<RequestType>(query, parameters);
                 return requestType;
             }
+        }
+
+        public async Task<List<RequestType>> GetRequestTypesByDeptId(int dept_id)
+        {
+            string query = "Select * from requesttypes where dept_id=@dept_id";
+            var parameters = new DynamicParameters();
+
+            parameters.Add("dept_id", dept_id, System.Data.DbType.Int64);
+
+            using (var connection = context.CreateConnection())
+            {
+                var reqlist = await connection.QueryAsync<RequestType>(query, parameters);
+                return reqlist.ToList();
+            }
+
         }
 
         public async Task<string> RemoveRequestType(int request_type_id)

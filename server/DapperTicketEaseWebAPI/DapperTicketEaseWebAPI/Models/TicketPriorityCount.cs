@@ -2,7 +2,7 @@
 {
     public class TicketPriorityCount
     {
-        public int priority { get; set; }
+        public string priority { get; set; }
         public int ticket_count { get; set; }
     }
 }

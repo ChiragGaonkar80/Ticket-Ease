@@ -10,9 +10,9 @@
 
         public Task<Ticket> GetTicketById(string ticket_id);        
 
-        public Task<string> GetAllIncidentTicketsByEmpId(int emp_id);
+        public Task<string> GetAllIncidentTicketsByEmpId(string emp_id);
 
-        public Task<string> GetAllRequestTicketsByEmpId(int emp_id);
+        public Task<string> GetAllRequestTicketsByEmpId(string emp_id);
 
         public Task<string> CreateTicket(Ticket ticket);
 
@@ -24,6 +24,6 @@
 
         public Task<List<Ticket>> GetAllTicketsByCreationDate();
 
-        public Task<List<Ticket>> GetAllTicketsDeptWiseByPriority(string dept_id, int priority);
+        public Task<List<Ticket>> GetAllTicketsDeptWiseByPriority(string dept_id, string priority);
     }
 }

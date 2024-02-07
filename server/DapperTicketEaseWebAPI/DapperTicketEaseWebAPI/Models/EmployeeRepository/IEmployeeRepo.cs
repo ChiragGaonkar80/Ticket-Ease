@@ -8,6 +8,8 @@
 
         public Task<Employee> GetEmployeeById(string emp_id);
 
+        public Task<Employee> GetManagerByEmpId(string emp_id);
+
         public Task<List<TicketStatusCount>> GetTicketStatusCountsForAdmin(string emp_id);
 
         public Task<List<TicketPriorityCount>> GetTicketPriorityCountsForAdmin(string emp_id);
@@ -19,6 +21,7 @@
         public Task<string> RemoveEmployee(string emp_id);
 
         public Task<string> SeeEmployee(string email, string password, bool isAdmin);
+
         public Task<List<Employee>> GetAllManagers();
     }
 }

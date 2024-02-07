@@ -70,7 +70,20 @@ namespace DapperTicketEaseWebAPI.Models.Repo
 
             }
         }
+        
+        public async Task<Employee> GetManagerByEmpId(string emp_id)
+        {
+            string query = "select * from employees where emp_id = (select manager_id from employees where emp_id = @emp_id)";
+            var parameters = new DynamicParameters();
 
+            parameters.Add("emp_id", emp_id, System.Data.DbType.String);
+
+            using (var connection = context.CreateConnection())
+            {
+                var emp = await connection.QueryFirstOrDefaultAsync<Employee>(query, parameters);
+                return emp;
+            }
+        }
         public async Task<List<TicketStatusCount>> GetTicketStatusCountsForAdmin(string emp_id)
         {
             using (var connection = context.CreateConnection())

@@ -99,7 +99,21 @@ namespace DapperTicketEaseWebAPI.Controllers
             }
 
         }
-
+        
+        [HttpGet("GetManagerByEmpId")]
+        public async Task<IActionResult> GetManagerByEmpId(string emp_id)
+        {
+            var _emp = await this.repo.GetManagerByEmpId(emp_id);
+            if (_emp != null)
+            {
+                var response = Ok(_emp);
+                return response;
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
 
         [HttpGet("GetTicketStatusCountsForAdmin")]
         public async Task<IActionResult> GetTicketStatusCountsForAdmin(string emp_id)

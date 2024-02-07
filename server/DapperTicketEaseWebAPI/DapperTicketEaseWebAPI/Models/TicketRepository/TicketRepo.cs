@@ -152,13 +152,13 @@ namespace DapperTicketEaseWebAPI.Models.TicketRepository
             }
         }
 
-        public async Task<List<Ticket>> GetAllTicketsDeptWiseByPriority(string dept_id, int priority)
+        public async Task<List<Ticket>> GetAllTicketsDeptWiseByPriority(string dept_id, string priority)
         {
             string query = "Select * from ticket t inner join ticketstatus ts on t.status_id = ts.status_id where dept_id=@dept_id and priority=@priority;";
             var parameters = new DynamicParameters();
 
             parameters.Add("dept_id", dept_id, System.Data.DbType.String);
-            parameters.Add("priority", priority, System.Data.DbType.Int64);
+            parameters.Add("priority", priority, System.Data.DbType.String);
             using (var connection = context.CreateConnection())
             {
                 var ticketlist = await connection.QueryAsync<Ticket>(query, parameters);
@@ -166,7 +166,7 @@ namespace DapperTicketEaseWebAPI.Models.TicketRepository
             }
         }
 
-        public async Task<string> GetAllIncidentTicketsByEmpId(int emp_id)
+        public async Task<string> GetAllIncidentTicketsByEmpId(string emp_id)
         {
             string query = "SELECT t.ticket_id, " +
                 "t.priority, " +
@@ -184,7 +184,7 @@ namespace DapperTicketEaseWebAPI.Models.TicketRepository
                 "and r.is_incident = 0 order by t.priority;";
             var parameters = new DynamicParameters();
 
-            parameters.Add("emp_id", emp_id, System.Data.DbType.Int64);
+            parameters.Add("emp_id", emp_id, System.Data.DbType.String);
             using (var connection = context.CreateConnection())
             {
                 var ticketlist = await connection.QueryFirstOrDefaultAsync<dynamic>(query, parameters);
@@ -193,7 +193,7 @@ namespace DapperTicketEaseWebAPI.Models.TicketRepository
             }
         }
 
-        public async Task<string> GetAllRequestTicketsByEmpId(int emp_id)
+        public async Task<string> GetAllRequestTicketsByEmpId(string emp_id)
         {
             string query = "SELECT t.ticket_id, " +
                 "t.priority, " +
@@ -211,7 +211,7 @@ namespace DapperTicketEaseWebAPI.Models.TicketRepository
                 "and r.is_incident = 1 order by t.priority;";
             var parameters = new DynamicParameters();
 
-            parameters.Add("emp_id", emp_id, System.Data.DbType.Int64);
+            parameters.Add("emp_id", emp_id, System.Data.DbType.String);
             using (var connection = context.CreateConnection())
             {
                 var ticketlist = await connection.QueryFirstOrDefaultAsync<dynamic>(query, parameters);

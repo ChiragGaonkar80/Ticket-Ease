@@ -79,7 +79,7 @@ namespace DapperTicketEaseWebAPI.Controllers
         }
 
         [HttpGet("GetAllIncidentTicketsByEmpId")]
-        public async Task<IActionResult> GetAllIncidentTicketsByEmpId(int emp_id)
+        public async Task<IActionResult> GetAllIncidentTicketsByEmpId(string emp_id)
         {
             var _list = await this.repo.GetAllIncidentTicketsByEmpId(emp_id);
             if (_list != null)
@@ -95,7 +95,7 @@ namespace DapperTicketEaseWebAPI.Controllers
 
 
         [HttpGet("GetAllRequestTicketsByEmpId")]
-        public async Task<IActionResult> GetAllRequestTicketsByEmpId(int emp_id)
+        public async Task<IActionResult> GetAllRequestTicketsByEmpId(string emp_id)
         {
             var _list = await this.repo.GetAllRequestTicketsByEmpId(emp_id);
             if (_list != null)
@@ -168,7 +168,7 @@ namespace DapperTicketEaseWebAPI.Controllers
         }
 
         [HttpGet("GetAllTicketsDeptWiseByPriority")]
-        public async Task<IActionResult> GetAllTicketsDeptWiseByPriority(string dept_id, int priority)
+        public async Task<IActionResult> GetAllTicketsDeptWiseByPriority(string dept_id, string priority)
         {
             var _list = await this.repo.GetAllTicketsDeptWiseByPriority(dept_id, priority);
             if (_list != null)

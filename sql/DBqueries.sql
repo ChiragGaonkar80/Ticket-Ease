@@ -3,7 +3,8 @@ use ticketease;
 
 -- BU Table
 CREATE TABLE dbo.BU (
-    bu_id INT NOT NULL,
+	sr_no int identity(1,1),
+    bu_id varchar(50) not null,
     bu_name varchar(255) NOT NULL,
     is_du Bit,
 	Constraint PK_BU PRIMARY KEY CLUSTERED (bu_id)
@@ -11,30 +12,37 @@ CREATE TABLE dbo.BU (
 
 -- TicketStatus Table
 create table dbo.TicketStatus(
-status_id int not null,
+sr_no int identity(1,1),
+status_id varchar(50) not null,
 status_title varchar(255),
 Constraint PK_TicketStatus PRIMARY KEY CLUSTERED (status_id)
 );
 
+
+
 -- Department Table
 create table dbo.Department(
-dept_id int not null,
+sr_no int identity(1,1),
+dept_id varchar(50) not null,
 dept_name varchar(255),
 dept_head varchar(255),
 Constraint PK_Dept PRIMARY KEY CLUSTERED (dept_id)
 );
 
+
+
 -- Employees Table
 CREATE TABLE dbo.Employees (
-    emp_id INT NOT NULL,
+	sr_no int identity(1,1),
+    emp_id varchar(50) NOT NULL,
     firstname varchar(255) NOT NULL,
 	lastname varchar(255) NOT NULL,
 	email varchar(255) NOT NULL,
 	password varchar(255) NOT NULL,
 	profile_link varchar(255) NOT NULL,
-	dept_id INT NOT NULL,
-	bu_id INT NOT NULL,
-	manager_id int NULL,
+	dept_id varchar(50) NOT NULL,
+	bu_id varchar(50) NOT NULL,
+	manager_id varchar(50) NULL,
 	blood_type char(10) NOT NULL,
 	is_admin bit not null,
 	is_manager bit not null default 0,
@@ -50,9 +58,10 @@ CREATE TABLE dbo.Employees (
 
 -- RequestTypes Table
 CREATE TABLE dbo.RequestTypes(
-	request_type_id int NOT NULL,
+	sr_no int identity(1,1), 
+	request_type_id varchar(50) NOT NULL,
 	request_type varchar(255) not null,
-	dept_id int not null,
+	dept_id varchar(50) not null,
 	description varchar(max) not null,
 	is_incident bit not null default 0,
 	structure varchar(max) null,
@@ -60,17 +69,20 @@ CREATE TABLE dbo.RequestTypes(
 	Constraint fk_dept_request_type Foreign key (dept_id) references dbo.Department(dept_id)
 );
 
+
+
 -- Ticket Table
 CREATE TABLE dbo.Ticket(
-	ticket_id INT NOT NULL,
+	sr_no int identity(1,1), 
+	ticket_id varchar(50) NOT NULL,
     title varchar(255) NOT NULL,
 	formdata varchar(max) null,
-	emp_id int not null,
-	dept_id int not null,
-	admin_id int null,
-	manager_id int null,
-	status_id int not null,
-	request_type_id int not null,
+	emp_id varchar(50) not null,
+	dept_id varchar(50) not null,
+	admin_id varchar(50) null,
+	manager_id varchar(50) null,
+	status_id varchar(50) not null,
+	request_type_id varchar(50) not null,
 	priority int,
 	created_on date,
 	updated_on date,
@@ -86,9 +98,10 @@ CREATE TABLE dbo.Ticket(
 
 -- TicketComments Table
 CREATE TABLE dbo.TicketComments(
-	comment_id int NOT NULL,
+	sr_no int identity(1,1),
+	comment_id varchar(50) NOT NULL,
 	description varchar(255) not null,
-	ticket_id int not null,
+	ticket_id varchar(50) not null,
 	status_title varchar(255) not null,
 	created_on date,
 	updated_on date,
@@ -100,12 +113,12 @@ DBCC CHECKIDENT ('Employees', RESEED, 0);
 
 -- SP for getting the status counts for admin of specific Department 
 CREATE PROCEDURE GetTicketStatusCountsForAdmin
-    @emp_id INT
+    @emp_id varchar(50)
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    DECLARE @dept_id INT;
+    DECLARE @dept_id varchar(50);
 
     -- Get the department of the Admin employee
     SELECT @dept_id = dept_id
@@ -122,15 +135,15 @@ BEGIN
     GROUP BY ts.status_title;
 END;
 
-EXEC GetTicketStatusCountsForAdmin @emp_id = 2;
-EXEC GetTicketStatusCountsForAdmin @emp_id = 1;
+--EXEC GetTicketStatusCountsForAdmin @emp_id = 2;
+--EXEC GetTicketStatusCountsForAdmin @emp_id = 1;
 
 --SP for getting ticket comments for particular ticket
 CREATE PROCEDURE GetTicketCommentsForTicket
-    @ticket_id INT
+    @ticket_id varchar(50)
 AS
 BEGIN
-	DECLARE @status_id INT;
+	DECLARE @status_id varchar(50);
 	DECLARE @status_title VARCHAR(255);
 
 	Select status_id=@status_id
@@ -147,7 +160,7 @@ BEGIN
     WHERE t.ticket_id = @ticket_id;
 END;
 
-exec GetTicketCommentsForTicket @ticket_id=2;
+--exec GetTicketCommentsForTicket @ticket_id=2;
 
 -- SP for updating status and adding comments for particular Ticket
 CREATE PROCEDURE UpdateTicketStatusandAddComments
@@ -179,12 +192,12 @@ Alter Table Ticket add priority int;
 
 --SP for getting counts of tickets by priority
 CREATE PROCEDURE GetTicketPriorityCountsForAdmin
-    @emp_id INT
+    @emp_id varchar(50)
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    DECLARE @dept_id INT;
+    DECLARE @dept_id varchar(50);
 
     -- Get the department of the Admin employee
     SELECT @dept_id = dept_id

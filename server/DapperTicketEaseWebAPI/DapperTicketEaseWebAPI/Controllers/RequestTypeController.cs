@@ -34,7 +34,7 @@ namespace DapperRequestEaseWebAPI.Controllers
         }
 
         [HttpGet("GetRequestTypeById")]
-        public async Task<IActionResult> GetRequestTypeById(int request_type_id)
+        public async Task<IActionResult> GetRequestTypeById(string request_type_id)
         {
             var _requestType = await this._repo.GetRequestTypeById(request_type_id);
             if (_requestType != null)
@@ -49,7 +49,7 @@ namespace DapperRequestEaseWebAPI.Controllers
         }
 
         [HttpGet("GetRequestTypesByDeptId")]
-        public async Task<IActionResult> GetRequestTypesByDeptId(int dept_id)
+        public async Task<IActionResult> GetRequestTypesByDeptId(string dept_id)
         {
             var _requestList = await this._repo.GetRequestTypesByDeptId(dept_id);
             if (_requestList != null)
@@ -83,7 +83,7 @@ namespace DapperRequestEaseWebAPI.Controllers
         }
 
         [HttpDelete("RemoveRequest")]
-        public async Task<IActionResult> RemoveRequest(int request_type_id)
+        public async Task<IActionResult> RemoveRequest(string request_type_id)
         {
             var _result = await this._repo.RemoveRequestType(request_type_id);
 

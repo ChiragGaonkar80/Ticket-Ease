@@ -53,7 +53,7 @@ namespace DapperTicketEaseWebAPI.Controllers
         }
 
         [HttpDelete("RemoveBU")]
-        public async Task<IActionResult> RemoveBU(int id)
+        public async Task<IActionResult> RemoveBU(string id)
         {
             var _result = await this.repo.RemoveBU(id);
 

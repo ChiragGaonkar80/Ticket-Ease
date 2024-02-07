@@ -13,13 +13,20 @@ namespace DapperTicketEaseWebAPI.Models.DepartmentRepository
             this.context = context;
         }
 
+        public string GenerateDeptId()
+        {
+            Guid g = Guid.NewGuid();
+            string id = "dept_" + g.ToString();
+            return id;
+        }
+
         public async Task<string> CreateDepartment(Department department)
         {
             string response = string.Empty;
             string query = "Insert into department(dept_id,dept_name,dept_head) values (@dept_id,@dept_name,@dept_head);";
             var parameters = new DynamicParameters();
 
-            parameters.Add("dept_id", department.dept_id, System.Data.DbType.Int64);
+            parameters.Add("dept_id", GenerateDeptId(), System.Data.DbType.String);
             parameters.Add("dept_name", department.dept_name, System.Data.DbType.String);
             parameters.Add("dept_head", department.dept_head, System.Data.DbType.String);
 
@@ -44,13 +51,13 @@ namespace DapperTicketEaseWebAPI.Models.DepartmentRepository
             }
         }
 
-        public async Task<string> RemoveDepartment(int id)
+        public async Task<string> RemoveDepartment(string dept_id)
         {
             string response = string.Empty;
-            string query = "Delete from bu where dept_id=@dept_id";
+            string query = "Delete from department where dept_id=@dept_id";
             var parameters = new DynamicParameters();
 
-            parameters.Add("dept_id", id, System.Data.DbType.Int64);
+            parameters.Add("dept_id", dept_id, System.Data.DbType.String);
 
             using (var connection = context.CreateConnection())
             {
@@ -64,10 +71,10 @@ namespace DapperTicketEaseWebAPI.Models.DepartmentRepository
         public async Task<string> UpdateDepartment(Department department)
         {
             string response = string.Empty;
-            string query = "Update department set dept_id=@dept_id, dept_name=@dept_name, dept_head=@dept_head;";
+            string query = "Update department set dept_name=@dept_name, dept_head=@dept_head where dept_id=@dept_id;";
             var parameters = new DynamicParameters();
 
-            parameters.Add("dept_id", department.dept_id, System.Data.DbType.Int64);
+            parameters.Add("dept_id", department.dept_id, System.Data.DbType.String);
             parameters.Add("dept_name", department.dept_name, System.Data.DbType.String);
             parameters.Add("dept_head", department.dept_head, System.Data.DbType.String);
 

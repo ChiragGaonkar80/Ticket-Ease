@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DapperTicketEaseWebAPI.Models.TicketCommentsRepository;
 using DapperTicketEaseWebAPI.Models;
+using Azure;
+using System;
 
 
 namespace DapperTicketEaseWebAPI.Controllers
@@ -15,8 +17,34 @@ namespace DapperTicketEaseWebAPI.Controllers
         {
             this.repo = repo;
         }
+
+        [HttpPost("CreateTicketComment")]
+        public async Task<IActionResult> CreateTicketComment([FromBody] TicketComment ticketComment)
+        {
+            var _result = await this.repo.CreateTicketComment(ticketComment);
+            return Ok(_result);
+
+        }
+
+        [HttpPut("UpdateTicketComment")]
+        public async Task<IActionResult> UpdateTicketComment([FromBody] TicketComment ticketComment)
+        {
+            var _result = await this.repo.UpdateTicketComment(ticketComment);
+            return Ok(_result);
+
+        }
+
+        [HttpDelete("RemoveTicketComment")]
+        public async Task<IActionResult> RemoveTicketComment(string comment_id)
+        {
+            var _result = await this.repo.RemoveTicketComment(comment_id);
+            return Ok(_result);
+
+
+        }
+
         [HttpGet("GetTicketCommentsForTicket")]
-        public async Task<IActionResult> GetTicketCommentsForTicket(int ticket_id)
+        public async Task<IActionResult> GetTicketCommentsForTicket(string ticket_id)
         {
             var ticketComments = await this.repo.GetTicketCommentsForTicket(ticket_id);
             if (ticketComments != null && ticketComments.Any())
@@ -29,7 +57,7 @@ namespace DapperTicketEaseWebAPI.Controllers
             }
         }
 
-        [HttpPost("UpdateTicketStatusandAddComments")]
+        [HttpPut("UpdateTicketStatusandAddComments")]
         public async Task<IActionResult> UpdateTicketStatusandAddComments([FromBody] UpdateStatusAddComment us)
         {
             var _result = await this.repo.UpdateTicketStatusandAddComments(us);

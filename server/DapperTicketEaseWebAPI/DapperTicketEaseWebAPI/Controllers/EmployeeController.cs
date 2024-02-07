@@ -53,6 +53,22 @@ namespace DapperTicketEaseWebAPI.Controllers
 
         }
 
+        [HttpGet("GetEmployeeById")]
+        public async Task<IActionResult> GetEmployeeById(string emp_id)
+        {
+            var _emp = await this.repo.GetEmployeeById(emp_id);
+            if (_emp != null)
+            {
+                var response = Ok(_emp);
+                return response;
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
         [Authorize]
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
@@ -86,7 +102,7 @@ namespace DapperTicketEaseWebAPI.Controllers
 
 
         [HttpGet("GetTicketStatusCountsForAdmin")]
-        public async Task<IActionResult> GetTicketStatusCountsForAdmin(int emp_id)
+        public async Task<IActionResult> GetTicketStatusCountsForAdmin(string emp_id)
         {
             var statusCounts = await this.repo.GetTicketStatusCountsForAdmin(emp_id);
             if (statusCounts != null && statusCounts.Any())
@@ -99,7 +115,7 @@ namespace DapperTicketEaseWebAPI.Controllers
             }
         }
         [HttpGet("GetTicketPriorityCountsForAdmin")]
-        public async Task<IActionResult> GetTicketPriorityCountsForAdmin(int emp_id)
+        public async Task<IActionResult> GetTicketPriorityCountsForAdmin(string emp_id)
         {
             var statusCounts = await this.repo.GetTicketPriorityCountsForAdmin(emp_id);
             if (statusCounts != null && statusCounts.Any())
@@ -148,9 +164,9 @@ namespace DapperTicketEaseWebAPI.Controllers
         }
 
         [HttpDelete("RemoveEmployee")]
-        public async Task<IActionResult> RemoveEmployee(string email)
+        public async Task<IActionResult> RemoveEmployee(string emp_id)
         {
-            var _result = await this.repo.RemoveEmployee(email);
+            var _result = await this.repo.RemoveEmployee(emp_id);
 
             return Ok(_result);
 

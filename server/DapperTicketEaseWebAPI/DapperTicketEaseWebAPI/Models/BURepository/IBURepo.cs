@@ -8,7 +8,9 @@
 
         public Task<string> UpdateBU(BU bu);
 
-        public Task<string> RemoveBU(int id);
+        public Task<string> RemoveBU(string bu_id);
+
+        
 
     }
 }

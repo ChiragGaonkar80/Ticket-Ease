@@ -53,7 +53,7 @@ namespace DapperTicketEaseWebAPI.Controllers
         }
 
         [HttpDelete("RemoveDepartment")]
-        public async Task<IActionResult> RemoveDepartment(int id)
+        public async Task<IActionResult> RemoveDepartment(string id)
         {
             var _result = await this.repo.RemoveDepartment(id);
 

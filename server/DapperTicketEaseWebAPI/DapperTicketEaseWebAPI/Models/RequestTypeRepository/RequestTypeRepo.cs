@@ -13,15 +13,23 @@ namespace DapperTicketEaseWebAPI.Models.RequestRepository
         {
             this.context = context;
         }
+
+        public string GenerateRequestTypeId()
+        {
+            Guid g = Guid.NewGuid();
+            string id = "rqsttyp_" + g.ToString();
+            return id;
+        }
+
         public async Task<string> CreateRequestType(RequestType requestType)
         {
             string response = string.Empty;
             string query = "Insert into requesttypes (request_type_id, request_type, dept_id, description, is_incident, structure) values (@request_type_id, @request_type, @dept_id, @description, @is_incident, @structure);";
             var parameters = new DynamicParameters();
 
-            parameters.Add("request_type_id", requestType.request_type_id, System.Data.DbType.Int64);
+            parameters.Add("request_type_id", GenerateRequestTypeId(), System.Data.DbType.String);
             parameters.Add("request_type", requestType.request_type, System.Data.DbType.String);
-            parameters.Add("dept_id", requestType.dept_id, System.Data.DbType.Int64);
+            parameters.Add("dept_id", requestType.dept_id, System.Data.DbType.String);
             parameters.Add("description", requestType.description, System.Data.DbType.String);
             parameters.Add("is_incident", requestType.is_incident, System.Data.DbType.Boolean);
             parameters.Add("structure", requestType.structure, System.Data.DbType.String);
@@ -44,12 +52,12 @@ namespace DapperTicketEaseWebAPI.Models.RequestRepository
             }
         }
 
-        public async Task<RequestType> GetRequestTypeById(int request_type_id)
+        public async Task<RequestType> GetRequestTypeById(string request_type_id)
         {
             string query = "Select * from requesttypes where request_type_id=@request_type_id";
 
             var parameters = new DynamicParameters();
-            parameters.Add("request_type_id", request_type_id, System.Data.DbType.Int64);
+            parameters.Add("request_type_id", request_type_id, System.Data.DbType.String);
 
             using (var connection = context.CreateConnection())
             {
@@ -58,12 +66,12 @@ namespace DapperTicketEaseWebAPI.Models.RequestRepository
             }
         }
 
-        public async Task<List<RequestType>> GetRequestTypesByDeptId(int dept_id)
+        public async Task<List<RequestType>> GetRequestTypesByDeptId(string dept_id)
         {
             string query = "Select * from requesttypes where dept_id=@dept_id";
             var parameters = new DynamicParameters();
 
-            parameters.Add("dept_id", dept_id, System.Data.DbType.Int64);
+            parameters.Add("dept_id", dept_id, System.Data.DbType.String);
 
             using (var connection = context.CreateConnection())
             {
@@ -73,13 +81,13 @@ namespace DapperTicketEaseWebAPI.Models.RequestRepository
 
         }
 
-        public async Task<string> RemoveRequestType(int request_type_id)
+        public async Task<string> RemoveRequestType(string request_type_id)
         {
             string response = string.Empty;
             string query = "Delete from requesttypes where request_type_id=@request_type_id";
             var parameters = new DynamicParameters();
 
-            parameters.Add("request_type_id", request_type_id, System.Data.DbType.Int64);
+            parameters.Add("request_type_id", request_type_id, System.Data.DbType.String);
 
             using (var connection = context.CreateConnection())
             {
@@ -90,16 +98,18 @@ namespace DapperTicketEaseWebAPI.Models.RequestRepository
             return response;
         }
 
-        public async Task<string> UpdateRequestType(RequestType request)
+        public async Task<string> UpdateRequestType(RequestType requestType)
         {
             string response = string.Empty;
-            string query = "Update requesttypes set request_type=@request_type,dept_id=@dept_id, description=@description where request_type_id=@request_type_id;";
+            string query = "Update requesttypes set request_type=@request_type,dept_id=@dept_id, description=@description, is_incident=@is_incident, structure=@structure  where request_type_id=@request_type_id;";
             var parameters = new DynamicParameters();
 
-            parameters.Add("request_type_id", request.request_type_id, System.Data.DbType.String);
-            parameters.Add("request_type", request.request_type, System.Data.DbType.String);
-            parameters.Add("dept_id", request.dept_id, System.Data.DbType.Int64);
-            parameters.Add("description", request.description, System.Data.DbType.String);
+            parameters.Add("request_type_id", requestType.request_type_id, System.Data.DbType.String);
+            parameters.Add("request_type", requestType.request_type, System.Data.DbType.String);
+            parameters.Add("dept_id", requestType.dept_id, System.Data.DbType.String);
+            parameters.Add("description", requestType.description, System.Data.DbType.String);
+            parameters.Add("is_incident", requestType.is_incident, System.Data.DbType.Boolean);
+            parameters.Add("structure", requestType.structure, System.Data.DbType.String);
 
             using (var connection = context.CreateConnection())
             {

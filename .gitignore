@@ -7,6 +7,8 @@
 .env
 server/DapperTicketEaseWebAPI/DapperTicketEaseWebAPI/bin
 server/DapperTicketEaseWebAPI/DapperTicketEaseWebAPI/obj
+server/DapperTicketEaseWebAPI/DapperTicketEaseWebAPI/appsettings.json
+
 # User-specific files
 *.rsuser
 *.suo

@@ -8,6 +8,6 @@
 
         public Task<string> UpdateDepartment(Department department);
 
-        public Task<string> RemoveDepartment(int id);
+        public Task<string> RemoveDepartment(string dept_id);
     }
 }

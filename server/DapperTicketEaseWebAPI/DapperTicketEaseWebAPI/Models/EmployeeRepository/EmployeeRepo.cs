@@ -94,21 +94,38 @@ namespace DapperTicketEaseWebAPI.Models.Repo
             }
         }
 
-        public async Task<Employee> Login(string email, string password, bool isAdmin)
+        public async Task<Employee> Login(string email, string password, bool isAdminLogIn)
         {
-
-            string query = "Select * from employees where email=@email and password=@password and is_admin=@isAdmin";
-            var parameters = new DynamicParameters();
-
-            parameters.Add("email", email, System.Data.DbType.String);
-            parameters.Add("password", password, System.Data.DbType.String);
-            parameters.Add("isAdmin", isAdmin, System.Data.DbType.Boolean);
-
-            using (var connection = context.CreateConnection())
+            if(isAdminLogIn)
             {
-                var emp = await connection.QueryFirstOrDefaultAsync<Employee>(query, parameters);
-                return emp;
+                string query = "Select * from employees where email=@email and password=@password and is_admin=@isAdmin";
+                var parameters = new DynamicParameters();
+
+                parameters.Add("email", email, System.Data.DbType.String);
+                parameters.Add("password", password, System.Data.DbType.String);
+                parameters.Add("isAdmin", isAdminLogIn, System.Data.DbType.Boolean);
+
+                using (var connection = context.CreateConnection())
+                {
+                    var emp = await connection.QueryFirstOrDefaultAsync<Employee>(query, parameters);
+                    return emp;
+                }
             }
+            else
+            {
+                string query = "Select * from employees where email=@email and password=@password";
+                var parameters = new DynamicParameters();
+
+                parameters.Add("email", email, System.Data.DbType.String);
+                parameters.Add("password", password, System.Data.DbType.String);
+
+                using (var connection = context.CreateConnection())
+                {
+                    var emp = await connection.QueryFirstOrDefaultAsync<Employee>(query, parameters);
+                    return emp;
+                }
+            }
+            
 
         }
 

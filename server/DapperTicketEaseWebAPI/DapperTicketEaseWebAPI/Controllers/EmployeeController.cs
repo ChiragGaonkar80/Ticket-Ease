@@ -38,7 +38,7 @@ namespace DapperTicketEaseWebAPI.Controllers
               "isAdmin": false
             }
             */
-            var _emp = await this.repo.Login(loginDetails.email, loginDetails.password, loginDetails.isAdmin);
+            var _emp = await this.repo.Login(loginDetails.email, loginDetails.password, loginDetails.isAdminLogIn);
             IActionResult response = Unauthorized();
             if (_emp != null)
             {

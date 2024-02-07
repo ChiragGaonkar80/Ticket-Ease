@@ -113,12 +113,12 @@ DBCC CHECKIDENT ('Employees', RESEED, 0);
 
 -- SP for getting the status counts for admin of specific Department 
 CREATE PROCEDURE GetTicketStatusCountsForAdmin
-    @emp_id INT
+    @emp_id varchar(50)
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    DECLARE @dept_id INT;
+    DECLARE @dept_id varchar(50);
 
     -- Get the department of the Admin employee
     SELECT @dept_id = dept_id
@@ -163,14 +163,14 @@ END;
 
 -- SP for updating status and adding comments for particular Ticket
 CREATE PROCEDURE UpdateTicketStatusandAddComments
-    @ticket_id INT,
+    @ticket_id varchar(50),
 	@status_title Varchar(255),
 	@comment Varchar(255)
 AS
 BEGIN
     SET NOCOUNT ON;
 
-	DECLARE @status_id INT;
+	DECLARE @status_id varchar(50);
 
     -- Get the status_id of the Ticket
 	SELECT @status_id=status_id from dbo.TicketStatus

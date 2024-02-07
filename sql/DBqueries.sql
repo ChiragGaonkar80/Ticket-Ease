@@ -113,12 +113,12 @@ DBCC CHECKIDENT ('Employees', RESEED, 0);
 
 -- SP for getting the status counts for admin of specific Department 
 CREATE PROCEDURE GetTicketStatusCountsForAdmin
-    @emp_id varchar(50)
+    @emp_id INT
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    DECLARE @dept_id varchar(50);
+    DECLARE @dept_id INT;
 
     -- Get the department of the Admin employee
     SELECT @dept_id = dept_id
@@ -129,9 +129,8 @@ BEGIN
     SELECT
         ts.status_title,
         COUNT(t.ticket_id) AS ticket_count
-    FROM dbo.Ticket t
-    INNER JOIN dbo.TicketStatus ts ON t.status_id = ts.status_id
-    WHERE t.dept_id = @dept_id
+    FROM dbo.TicketStatus ts
+    LEFT JOIN dbo.Ticket t ON ts.status_id = t.status_id AND t.dept_id = @dept_id
     GROUP BY ts.status_title;
 END;
 

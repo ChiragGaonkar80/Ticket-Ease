@@ -187,7 +187,7 @@ namespace DapperTicketEaseWebAPI.Models.TicketRepository
             parameters.Add("emp_id", emp_id, System.Data.DbType.String);
             using (var connection = context.CreateConnection())
             {
-                var ticketlist = await connection.QueryFirstOrDefaultAsync<dynamic>(query, parameters);
+                var ticketlist = await connection.QueryAsync<dynamic>(query, parameters);
                 string jsonString = JsonSerializer.Serialize(ticketlist);
                 return jsonString;
             }
@@ -214,7 +214,7 @@ namespace DapperTicketEaseWebAPI.Models.TicketRepository
             parameters.Add("emp_id", emp_id, System.Data.DbType.String);
             using (var connection = context.CreateConnection())
             {
-                var ticketlist = await connection.QueryFirstOrDefaultAsync<dynamic>(query, parameters);
+                var ticketlist = await connection.QueryAsync<dynamic>(query, parameters);
                 string jsonString = JsonSerializer.Serialize(ticketlist);
 
                 return jsonString;

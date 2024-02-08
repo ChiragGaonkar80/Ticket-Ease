@@ -13,7 +13,7 @@ namespace DapperTicketEaseWebAPI.Models.DepartmentRepository
             this.context = context;
         }
 
-        public string GenerateDeptId()
+        private string GenerateDeptId()
         {
             Guid g = Guid.NewGuid();
             string id = "dept_" + g.ToString();

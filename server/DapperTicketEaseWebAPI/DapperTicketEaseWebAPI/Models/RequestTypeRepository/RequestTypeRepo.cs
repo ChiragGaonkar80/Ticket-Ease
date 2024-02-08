@@ -14,7 +14,7 @@ namespace DapperTicketEaseWebAPI.Models.RequestRepository
             this.context = context;
         }
 
-        public string GenerateRequestTypeId()
+        private string GenerateRequestTypeId()
         {
             Guid g = Guid.NewGuid();
             string id = "rqsttyp_" + g.ToString();

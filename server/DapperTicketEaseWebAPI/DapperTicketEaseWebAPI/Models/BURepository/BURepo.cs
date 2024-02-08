@@ -13,7 +13,7 @@ namespace DapperTicketEaseWebAPI.Models.BURepo
             this.context = context;
         }
 
-        public string GenerateBuId()
+        private string GenerateBuId()
         {
             Guid g = Guid.NewGuid();
             string id = "bu_" + g.ToString();

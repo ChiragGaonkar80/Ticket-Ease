@@ -129,8 +129,9 @@ BEGIN
     SELECT
         ts.status_title,
         COUNT(t.ticket_id) AS ticket_count
-    FROM dbo.TicketStatus ts
-    LEFT JOIN dbo.Ticket t ON ts.status_id = t.status_id AND t.dept_id = @dept_id
+    FROM dbo.Ticket t
+    INNER JOIN dbo.TicketStatus ts ON t.status_id = ts.status_id
+    WHERE t.dept_id = @dept_id
     GROUP BY ts.status_title;
 END;
 
@@ -170,7 +171,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-	DECLARE @status_id varchar(50);
+	DECLARE @status_id INT;
 
     -- Get the status_id of the Ticket
 	SELECT @status_id=status_id from dbo.TicketStatus
@@ -184,7 +185,7 @@ BEGIN
 	VALUES (@comment,@ticket_id,status_title,GETDATE(),GETDATE())
 END;
 
-EXEC UpdateTicketStatusandAddComments @ticket_id = 2,@status_title='Closed',@comment='Now this is closed';
+--EXEC UpdateTicketStatusandAddComments @ticket_id = 2,@status_title='Closed',@comment='Now this is closed';
 
 -- Addition of priority column with values 1,2,3 -- 1 being the high priority
 Alter Table Ticket add priority int;

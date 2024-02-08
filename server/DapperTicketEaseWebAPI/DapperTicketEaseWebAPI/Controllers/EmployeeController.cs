@@ -7,7 +7,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-//using System.Web.Http;
 
 namespace DapperTicketEaseWebAPI.Controllers
 {
@@ -69,7 +68,7 @@ namespace DapperTicketEaseWebAPI.Controllers
 
         }
 
-        [Authorize]
+        // [Authorize]
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {

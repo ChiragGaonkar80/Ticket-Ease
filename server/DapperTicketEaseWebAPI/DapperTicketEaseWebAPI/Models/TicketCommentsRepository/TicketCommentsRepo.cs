@@ -12,7 +12,7 @@ namespace DapperTicketEaseWebAPI.Models.TicketCommentsRepository
             this.context = context;
         }
 
-        public string GenerateCommentId()
+        private string GenerateCommentId()
         {
             Guid g = Guid.NewGuid();
             string id = "tktcmnts_" + g.ToString();

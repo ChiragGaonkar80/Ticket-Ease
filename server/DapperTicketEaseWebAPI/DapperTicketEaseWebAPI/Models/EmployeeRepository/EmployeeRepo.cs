@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using DapperTicketEaseWebAPI.Models.Data;
+using Org.BouncyCastle.Crypto.Generators;
 using System.Text.Json;
 
 namespace DapperTicketEaseWebAPI.Models.Repo
@@ -13,11 +14,24 @@ namespace DapperTicketEaseWebAPI.Models.Repo
             this.context = context;
         }
 
-        public string GenerateEmployeeId()
+        private string GenerateEmployeeId()
         {
             Guid g = Guid.NewGuid();
             string id = "emp_" + g.ToString();
             return id;
+        }
+
+        private string GetPasswordHash(string password)
+        {
+            string salt = "$2a$12$D8cdgsq6vdHuOt3udbikIe";
+            var HashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
+
+            return HashedPassword;
+        }
+
+        private bool MatchPasswordHash(string password, string passwordFromLocalDB)
+        {
+            return BCrypt.Net.BCrypt.Verify(password, passwordFromLocalDB);
         }
 
         public async Task<string> CreateEmployee(Employee employee)
@@ -30,7 +44,7 @@ namespace DapperTicketEaseWebAPI.Models.Repo
             parameters.Add("firstname", employee.firstname, System.Data.DbType.String);
             parameters.Add("lastname", employee.lastname, System.Data.DbType.String);
             parameters.Add("email", employee.email, System.Data.DbType.String);
-            parameters.Add("password", employee.password, System.Data.DbType.String);
+            parameters.Add("password", GetPasswordHash(employee.password), System.Data.DbType.String);
             parameters.Add("profile_link", employee.profile_link, System.Data.DbType.String);
             parameters.Add("dept_id", employee.dept_id, System.Data.DbType.String);
             parameters.Add("bu_id", employee.bu_id, System.Data.DbType.String);
@@ -40,6 +54,8 @@ namespace DapperTicketEaseWebAPI.Models.Repo
             parameters.Add("is_manager", employee.is_manager, System.Data.DbType.Boolean);
             parameters.Add("joined_on", employee.joined_on, System.Data.DbType.Date);
 
+
+
             using (var connection = context.CreateConnection())
             {
                 await connection.ExecuteAsync(query, parameters);
@@ -48,6 +64,7 @@ namespace DapperTicketEaseWebAPI.Models.Repo
 
             return response;
         }
+
 
         public async Task<List<Employee>> GetAllEmployees()
         {
@@ -107,38 +124,52 @@ namespace DapperTicketEaseWebAPI.Models.Repo
             }
         }
 
-        public async Task<Employee> Login(string email, string password, bool isAdminLogIn)
+        public async Task<Employee?> Login(string email, string password, bool isAdminLogIn)
         {
-            if(isAdminLogIn)
+            Employee? emp = null;
+
+
+            if (isAdminLogIn)
             {
-                string query = "Select * from employees where email=@email and password=@password and is_admin=@isAdmin";
+                string query = "Select * from employees where email=@email and is_admin=@isAdmin";
                 var parameters = new DynamicParameters();
 
                 parameters.Add("email", email, System.Data.DbType.String);
-                parameters.Add("password", password, System.Data.DbType.String);
                 parameters.Add("isAdmin", isAdminLogIn, System.Data.DbType.Boolean);
 
                 using (var connection = context.CreateConnection())
                 {
-                    var emp = await connection.QueryFirstOrDefaultAsync<Employee>(query, parameters);
-                    return emp;
+                    emp = await connection.QueryFirstOrDefaultAsync<Employee>(query, parameters);
+
                 }
             }
             else
             {
-                string query = "Select * from employees where email=@email and password=@password";
+                string query = "Select * from employees where email=@email";
                 var parameters = new DynamicParameters();
 
                 parameters.Add("email", email, System.Data.DbType.String);
-                parameters.Add("password", password, System.Data.DbType.String);
 
                 using (var connection = context.CreateConnection())
                 {
-                    var emp = await connection.QueryFirstOrDefaultAsync<Employee>(query, parameters);
-                    return emp;
+                    emp = await connection.QueryFirstOrDefaultAsync<Employee>(query, parameters);
+
                 }
             }
-            
+
+            if (emp != null)
+            {
+                if (MatchPasswordHash(password, emp.password))
+                {
+                    return emp;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+
+            return emp;
 
         }
 

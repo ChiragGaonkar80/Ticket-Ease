@@ -14,7 +14,7 @@ namespace DapperTicketEaseWebAPI.Models.TicketRepository
             this.context = context;
         }
 
-        public string GenerateTicketId()
+        private string GenerateTicketId()
         {
             Guid g = Guid.NewGuid();
             string id = "tkt_" + g.ToString();
@@ -181,7 +181,7 @@ namespace DapperTicketEaseWebAPI.Models.TicketRepository
                 "on t.emp_id=e.emp_id inner join dbo.Employees m on e.manager_id=m.emp_id inner join dbo.TicketStatus ts on t.status_id=ts.status_id inner join dbo.RequestTypes r on t.request_type_id=r.request_type_id " +
                 "where e.dept_id = " +
                 "(select dept_id from dbo.Employees where emp_id=@emp_id)  " +
-                "and r.is_incident = 0 order by t.priority;";
+                "and r.is_incident = 1 order by t.priority;";
             var parameters = new DynamicParameters();
 
             parameters.Add("emp_id", emp_id, System.Data.DbType.String);
@@ -208,7 +208,7 @@ namespace DapperTicketEaseWebAPI.Models.TicketRepository
                 "on t.emp_id=e.emp_id inner join dbo.Employees m on e.manager_id=m.emp_id inner join dbo.TicketStatus ts on t.status_id=ts.status_id inner join dbo.RequestTypes r on t.request_type_id=r.request_type_id " +
                 "where e.dept_id = " +
                 "(select dept_id from dbo.Employees where emp_id=@emp_id)  " +
-                "and r.is_incident = 1 order by t.priority;";
+                "and r.is_incident = 0 order by t.priority;";
             var parameters = new DynamicParameters();
 
             parameters.Add("emp_id", emp_id, System.Data.DbType.String);
